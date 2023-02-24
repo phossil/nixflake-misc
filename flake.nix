@@ -2,9 +2,13 @@
   description = "flake for testing miscellaneous derivations";
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
+    nixpkgs-19_03 = {
+      url = "github:NixOS/nixpkgs/release-19.03";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs }:
+  outputs = { self, nixpkgs, nixpkgs-19_03 }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
