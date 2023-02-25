@@ -1,4 +1,4 @@
-{ stdenv, cmake, fetch, fetchpatch, libcxx, libunwind, llvm, version }:
+{ stdenv, cmake, fetch, fetchpatch, libcxx, libunwind, llvm, version, lib }:
 
 let
   # Newer LLVMs (3.8 onwards) have changed how some basic C++ stuff works, which breaks builds of this older version
@@ -12,14 +12,14 @@ in stdenv.mkDerivation {
   src = fetch "libcxxabi" "0ambfcmr2nh88hx000xb7yjm9lsqjjz49w5mlf6dlxzmj3nslzx4";
 
   nativeBuildInputs = [ cmake ];
-  buildInputs = stdenv.lib.optional (!stdenv.isDarwin && !stdenv.isFreeBSD) libunwind;
+  buildInputs = lib.optional (!stdenv.isDarwin && !stdenv.isFreeBSD) libunwind;
 
   postUnpack = ''
     unpackFile ${libcxx.src}
     unpackFile ${llvm.src}
     export NIX_CFLAGS_COMPILE+=" -I$PWD/include"
     export cmakeFlags="-DLLVM_PATH=$PWD/$(ls -d llvm-*) -DLIBCXXABI_LIBCXX_INCLUDES=$PWD/$(ls -d libcxx-*)/include"
-  '' + stdenv.lib.optionalString stdenv.isDarwin ''
+  '' + lib.optionalString stdenv.isDarwin ''
     export TRIPLE=x86_64-apple-darwin
   '';
 
@@ -54,8 +54,8 @@ in stdenv.mkDerivation {
   meta = {
     homepage = http://libcxxabi.llvm.org/;
     description = "A new implementation of low level support for a standard C++ library";
-    license = with stdenv.lib.licenses; [ ncsa mit ];
-    maintainers = with stdenv.lib.maintainers; [ vlstill ];
-    platforms = stdenv.lib.platforms.unix;
+    license = with lib.licenses; [ ncsa mit ];
+    maintainers = with lib.maintainers; [ vlstill ];
+    platforms = lib.platforms.unix;
   };
 }

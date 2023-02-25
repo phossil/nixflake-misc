@@ -1,4 +1,4 @@
-{ stdenv, fetch, cmake, libxml2, llvm, version, clang-tools-extra_src }:
+{ stdenv, fetch, cmake, libxml2, llvm, version, clang-tools-extra_src, lib }:
 
 let
   gcc = if stdenv.cc.isGNU then stdenv.cc.cc else stdenv.cc.cc.gcc;
@@ -19,8 +19,8 @@ let
       "-DCMAKE_CXX_FLAGS=-std=c++11"
     ] ++
     # Maybe with compiler-rt this won't be needed?
-    (stdenv.lib.optional stdenv.isLinux "-DGCC_INSTALL_PREFIX=${gcc}") ++
-    (stdenv.lib.optional (stdenv.cc.libc != null) "-DC_INCLUDE_DIRS=${stdenv.cc.libc}/include");
+    (lib.optional stdenv.isLinux "-DGCC_INSTALL_PREFIX=${gcc}") ++
+    (lib.optional (stdenv.cc.libc != null) "-DC_INCLUDE_DIRS=${stdenv.cc.libc}/include");
 
     patches = [ ./purity.patch ];
 
@@ -46,15 +46,15 @@ let
       lib = self; # compatibility with gcc, so that `stdenv.cc.cc.lib` works on both
       isClang = true;
       inherit llvm;
-    } // stdenv.lib.optionalAttrs stdenv.isLinux {
+    } // lib.optionalAttrs stdenv.isLinux {
       inherit gcc;
     };
 
     meta = {
       description = "A c, c++, objective-c, and objective-c++ frontend for the llvm compiler";
       homepage    = http://llvm.org/;
-      license     = stdenv.lib.licenses.ncsa;
-      platforms   = stdenv.lib.platforms.all;
+      license     = lib.licenses.ncsa;
+      platforms   = lib.platforms.all;
     };
   };
 in self

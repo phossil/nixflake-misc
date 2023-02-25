@@ -15,6 +15,7 @@
 , libcxxabi
 , debugVersion ? false
 , enableSharedLibraries ? !stdenv.isDarwin
+, lib
 }:
 
 let
@@ -31,7 +32,7 @@ in stdenv.mkDerivation rec {
   '';
 
   buildInputs = [ perl groff cmake libxml2 python2 libffi ]
-    ++ stdenv.lib.optional stdenv.isDarwin libcxxabi;
+    ++ lib.optional stdenv.isDarwin libcxxabi;
 
   propagatedBuildInputs = [ ncurses zlib ];
 
@@ -46,7 +47,7 @@ in stdenv.mkDerivation rec {
   prePatch = ''
     substituteInPlace cmake/config-ix.cmake --replace "if(WIN32)" "if(1)"
   ''
-  + stdenv.lib.optionalString (stdenv ? glibc) ''
+  + lib.optionalString (stdenv ? glibc) ''
     (
       cd projects/compiler-rt
       patch -p1 < ${
@@ -65,7 +66,7 @@ in stdenv.mkDerivation rec {
     ln -sv $PWD/lib $out
   '';
 
-  patches = stdenv.lib.optionals (!stdenv.isDarwin) [
+  patches = lib.optionals (!stdenv.isDarwin) [
     # llvm-config --libfiles returns (non-existing) static libs
     ../fix-llvm-config.patch
   ];
@@ -76,11 +77,11 @@ in stdenv.mkDerivation rec {
     "-DLLVM_BUILD_TESTS=ON"
     "-DLLVM_ENABLE_FFI=ON"
     "-DLLVM_ENABLE_RTTI=ON"
-  ] ++ stdenv.lib.optional enableSharedLibraries
+  ] ++ lib.optional enableSharedLibraries
     "-DBUILD_SHARED_LIBS=ON"
-    ++ stdenv.lib.optional (!isDarwin)
+    ++ lib.optional (!isDarwin)
     "-DLLVM_BINUTILS_INCDIR=${libbfd.dev}/include"
-    ++ stdenv.lib.optionals ( isDarwin) [
+    ++ lib.optionals ( isDarwin) [
     "-DLLVM_ENABLE_LIBCXX=ON"
     "-DCAN_TARGET_i386=false"
   ];
@@ -98,8 +99,8 @@ in stdenv.mkDerivation rec {
   meta = {
     description = "Collection of modular and reusable compiler and toolchain technologies";
     homepage    = http://llvm.org/;
-    license     = stdenv.lib.licenses.ncsa;
-    maintainers = with stdenv.lib.maintainers; [ lovek323 raskin ];
-    platforms   = stdenv.lib.platforms.all;
+    license     = lib.licenses.ncsa;
+    maintainers = with lib.maintainers; [ lovek323 raskin ];
+    platforms   = lib.platforms.all;
   };
 }

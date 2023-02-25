@@ -13,21 +13,29 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       lib = nixpkgs.lib;
+
+      # copied from nixpkgs 19.03
+      # please be aware this relies on an end-of-life release of python
+      # and building llvm fails at `Linking CXX shared library ../libLLVMSupport.so`      
+      llvmPackages_37 = with lib; with pkgs; callPackage ./pkgs/llvm/3.7 ({
+        # default gcc toolchain in nixos-unstable is too new
+        #stdenv = overrideCC stdenv buildPackages.gcc6;
+        inherit (stdenvAdapters) overrideCC;
+        buildLlvmTools = buildPackages.llvmPackages_37.tools;
+        targetLlvmLibraries = targetPackages.llvmPackages_37.libraries or llvmPackages_37.libraries;
+      } // lib.optionalAttrs (stdenv.cc.isGNU && stdenv.hostPlatform.isi686) {
+        stdenv = overrideCC stdenv buildPackages.gcc6;
+      });
     in
     {
       packages.${system} = {
         loudgain = pkgs.callPackage ./pkgs/loudgain { };
-        #etoile = pkgs.callPackage ./pkgs/etoile { };
+        # etoile = pkgs.callPackage ./pkgs/etoile { 
+        #   llvmPackages = llvmPackages_37;
+        # };
         #clasp-common-lisp = pkgs.callPackage ./pkgs/clasp { };
         egmde = pkgs.callPackage ./pkgs/egmde { };
         sfwbar = pkgs.callPackage ./pkgs/sfwbar { };
-        llvmPackages_37 = with lib; with pkgs; callPackage ./pkgs/llvm/3.7 ({
-          inherit (stdenvAdapters) overrideCC;
-          buildLlvmTools = buildPackages.llvmPackages_37.tools;
-          targetLlvmLibraries = targetPackages.llvmPackages_37.libraries;
-        } // stdenv.lib.optionalAttrs (stdenv.cc.isGNU && stdenv.hostPlatform.isi686) {
-          stdenv = overrideCC stdenv buildPackages.gcc6;
-        });
       };
     };
 }

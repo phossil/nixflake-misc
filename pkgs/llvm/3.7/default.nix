@@ -2,6 +2,7 @@
 , overrideCC, wrapCCWith
 , buildLlvmTools # tools, but from the previous stage, for cross
 , targetLlvmLibraries # libraries, but from the next stage, for cross
+, lib
 }:
 
 let
@@ -16,7 +17,7 @@ let
   compiler-rt_src = fetch "compiler-rt" "10c1mz2q4bdq9bqfgr3dirc6hz1h3sq8573srd5q5lr7m7j6jiwx";
   clang-tools-extra_src = fetch "clang-tools-extra" "0sxw2l3q5msbrwxv1ck72arggdw6n5ysi929gi69ikniranfv4aa";
 
-  tools = stdenv.lib.makeExtensible (tools: let
+  tools = lib.makeExtensible (tools: let
     callPackage = newScope (tools // { inherit stdenv isl version fetch; });
   in {
     llvm = callPackage ./llvm.nix {
@@ -43,7 +44,7 @@ let
     lldb = callPackage ./lldb.nix {};
   });
 
-  libraries = stdenv.lib.makeExtensible (libraries: let
+  libraries = lib.makeExtensible (libraries: let
     callPackage = newScope (libraries // buildLlvmTools // { inherit stdenv isl version fetch; });
   in {
 
