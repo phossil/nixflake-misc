@@ -33,7 +33,10 @@
         etoile = pkgs.callPackage ./pkgs/etoile { 
           llvmPackages = llvmPackages_37;
         };
-        clasp-common-lisp = pkgs.callPackage ./pkgs/clasp { };
+        clasp-common-lisp = with pkgs; callPackage ./pkgs/clasp {
+          llvmPackages = llvmPackages_14;
+          stdenv = llvmPackages_14.stdenv;
+        };
         egmde = pkgs.callPackage ./pkgs/egmde { };
         sfwbar = pkgs.callPackage ./pkgs/sfwbar { };
       };
