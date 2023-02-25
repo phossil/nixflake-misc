@@ -12,6 +12,7 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      lib = nixpkgs.lib;
     in
     {
       packages.${system} = {
@@ -20,6 +21,13 @@
         #clasp-common-lisp = pkgs.callPackage ./pkgs/clasp { };
         egmde = pkgs.callPackage ./pkgs/egmde { };
         sfwbar = pkgs.callPackage ./pkgs/sfwbar { };
+        llvmPackages_37 = with lib; with pkgs; callPackage ./pkgs/llvm/3.7 ({
+          inherit (stdenvAdapters) overrideCC;
+          buildLlvmTools = buildPackages.llvmPackages_37.tools;
+          targetLlvmLibraries = targetPackages.llvmPackages_37.libraries;
+        } // stdenv.lib.optionalAttrs (stdenv.cc.isGNU && stdenv.hostPlatform.isi686) {
+          stdenv = overrideCC stdenv buildPackages.gcc6;
+        });
       };
     };
 }
