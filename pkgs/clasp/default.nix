@@ -461,6 +461,8 @@ stdenv.mkDerivation rec {
   CLASP_SRC_DONTTOUCH = "true";
 
   meta = with lib; {
+    # marked as broken bc of broken llvm 3.7 depencency
+    broken = true;
     description =
       "A Common Lisp implementation based on LLVM with C++ integration";
     license = lib.licenses.lgpl21Plus;

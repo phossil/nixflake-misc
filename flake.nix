@@ -30,10 +30,10 @@
     {
       packages.${system} = {
         loudgain = pkgs.callPackage ./pkgs/loudgain { };
-        # etoile = pkgs.callPackage ./pkgs/etoile { 
-        #   llvmPackages = llvmPackages_37;
-        # };
-        #clasp-common-lisp = pkgs.callPackage ./pkgs/clasp { };
+        etoile = pkgs.callPackage ./pkgs/etoile { 
+          llvmPackages = llvmPackages_37;
+        };
+        clasp-common-lisp = pkgs.callPackage ./pkgs/clasp { };
         egmde = pkgs.callPackage ./pkgs/egmde { };
         sfwbar = pkgs.callPackage ./pkgs/sfwbar { };
       };

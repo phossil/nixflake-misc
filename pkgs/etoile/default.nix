@@ -301,6 +301,8 @@ gnustep.gsmakeDerivation rec {
   ];
 
   meta = with lib; {
+    # marked as broken bc of broken llvm 3.7 depencency    
+    broken = true;
     homepage = "http://etoileos.com/";
     description = "user-friendly GNUstep environment";
     maintainers = [ phossil ];
