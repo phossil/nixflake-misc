@@ -37,6 +37,7 @@
           llvmPackages = llvmPackages_14;
           stdenv = llvmPackages_14.stdenv;
         };
+        qvwm = pkgs.callPackage ./pkgs/qvwm { };
         egmde = pkgs.callPackage ./pkgs/egmde { };
         sfwbar = pkgs.callPackage ./pkgs/sfwbar { };
       };
