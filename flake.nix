@@ -30,9 +30,11 @@
     {
       packages.${system} = {
         loudgain = pkgs.callPackage ./pkgs/loudgain { };
+        # broken
         etoile = pkgs.callPackage ./pkgs/etoile { 
           llvmPackages = llvmPackages_37;
         };
+        # broken
         clasp-common-lisp = with pkgs; callPackage ./pkgs/clasp {
           llvmPackages = llvmPackages_14;
           stdenv = llvmPackages_14.stdenv;
@@ -40,6 +42,8 @@
         qvwm = pkgs.callPackage ./pkgs/qvwm { };
         egmde = pkgs.callPackage ./pkgs/egmde { };
         sfwbar = pkgs.callPackage ./pkgs/sfwbar { };
+        # broken
+        lainwm = pkgs.callPackage ./pkgs/lainwm { };
       };
     };
 }
