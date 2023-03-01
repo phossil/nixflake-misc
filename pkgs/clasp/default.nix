@@ -354,7 +354,7 @@ stdenv.mkDerivation rec {
       libedit
     ];
 
-  NIX_CXXSTDLIB_COMPILE = " -frtti -DBOOST_SYSTEM_ENABLE_DEPRECATED=1 ";
+  #NIX_CXXSTDLIB_COMPILE = " -frtti -DBOOST_SYSTEM_ENABLE_DEPRECATED=1 ";
   BOOST_LIB_DIR = "${boost}/lib";
 
   libPath = lib.makeLibraryPath [
