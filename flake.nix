@@ -36,8 +36,8 @@
         };
         # broken
         clasp-common-lisp = with pkgs; callPackage ./pkgs/clasp {
-          llvmPackages = llvmPackages_14;
-          stdenv = llvmPackages_14.stdenv;
+          llvmPackages = llvmPackages_15;
+          stdenv = llvmPackages_15.stdenv;
         };
         qvwm = pkgs.callPackage ./pkgs/qvwm { };
         egmde = pkgs.callPackage ./pkgs/egmde { };

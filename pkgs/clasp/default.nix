@@ -306,13 +306,13 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "clasp";
-  version = "2.1.0";
+  version = "2.2.0";
 
   src = fetchFromGitHub {
     owner = "clasp-developers";
     repo = "clasp";
     rev = version;
-    sha256 = "LDDMvBCfLsgltUkCd8mYIWUKooqn3vfoVMsdUchJTkM=";
+    sha256 = "gvUqUb0dftW1miiBcAPJur0wOunox4y2SUYeeJpR9R4=";
     fetchSubmodules = true;
   };
 
