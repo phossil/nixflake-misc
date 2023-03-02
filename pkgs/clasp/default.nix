@@ -139,8 +139,8 @@ let
   cleavir = fetchFromGitHub {
     owner = "s-expressionists";
     repo = "Cleavir";
-    rev = "22efd8c954dd63b57cb284ff2739f2be9306f247";
-    sha256 = "rOUuWn9Ge7vol0dhOjmXl6WE0Q1adqf1SUifwrD5JxQ=";
+    rev = "a73d313735447c63b4b11b6f8984f9b1e3e74ec9";
+    sha256 = "VQ8sB5W7JYnVsvfx2j7d2LQcECst79MCIW9QSuwm8GA=";
     fetchSubmodules = true;
   };
   closer-mop = fetchFromGitHub {
@@ -286,8 +286,8 @@ let
   cando = fetchFromGitHub {
     owner = "cando-developers";
     repo = "cando";
-    rev = "a01a9a5afb85bd441bab4d0913be301a549edb95";
-    sha256 = "PY7p4idn3N/0pZhVtpubxRJWxLImcdcoBKTHrYzK16M=";
+    rev = "a6934eddfce2ff1cb7131affce427ce652392f08";
+    sha256 = "AUmBLrk7lofJNagvI3KhPebvV8GkrDbBXrsAa3a1Bwo=";
     fetchSubmodules = true;
   };
   seqan-clasp = fetchFromGitHub {
