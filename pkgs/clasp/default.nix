@@ -442,7 +442,6 @@ stdenv.mkDerivation rec {
       --prefix=$out \
       --cc=${llvmPackages.clang}/bin/clang \
       --cxx=${llvmPackages.clang}/bin/clang++ \
-      --ld=lld \
       --ctags=${ctags}/bin/ctags \
       --jobs=$NIX_BUILD_CORES \
       --bin-path=$out/bin \
