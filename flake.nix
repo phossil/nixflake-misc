@@ -31,7 +31,7 @@
       packages.${system} = {
         loudgain = pkgs.callPackage ./pkgs/loudgain { };
         # broken
-        etoile = pkgs.callPackage ./pkgs/etoile { 
+        etoile = pkgs.callPackage ./pkgs/etoile {
           llvmPackages = llvmPackages_37;
         };
         # broken
@@ -44,6 +44,8 @@
         sfwbar = pkgs.callPackage ./pkgs/sfwbar { };
         # broken
         lainwm = pkgs.callPackage ./pkgs/lainwm { };
+        # broken
+        musicnya-desktop = pkgs.callPackage ./pkgs/musicnya-desktop { };
       };
     };
 }
