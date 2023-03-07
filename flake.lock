@@ -16,27 +16,9 @@
         "type": "github"
       }
     },
-    "nixpkgs-19_03": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1651478133,
-        "narHash": "sha256-8Zshz+5hN3QyLg/PjR3X0oCmF1KDGqoKH8zqosTyOn4=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "4bb712e74e8e7113051a9efd1741e86e2e088fc9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "release-19.03",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs",
-        "nixpkgs-19_03": "nixpkgs-19_03"
+        "nixpkgs": "nixpkgs"
       }
     }
   },
