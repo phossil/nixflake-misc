@@ -316,7 +316,7 @@ stdenv.mkDerivation rec {
     fetchSubmodules = true;
   };
 
-  checkInputs = [ glibcLocales ];
+  # checkInputs = [ glibcLocales ];
 
   nativeBuildInputs = [ git sbcl ninja pkg-config ] ++ (with llvmPackages; [
     llvm
@@ -336,46 +336,46 @@ stdenv.mkDerivation rec {
       ncurses
       libbsd
       boost
-      boost.dev
-      boehmgc
+      # boost.dev
+      # boehmgc
       libelf
       libffi
-      glibcLocales
+      # glibcLocales
       (boost.override {
         enableStatic = true;
         enableShared = false;
       })
-      (lib.overrideDerivation boehmgc (x: {
-        configureFlags = (x.configureFlags or [ ])
-        ++ [ "--enable-static" "--enable-handle-fork" ];
-      }))
+      # (lib.overrideDerivation boehmgc (x: {
+      #   configureFlags = (x.configureFlags or [ ])
+      #   ++ [ "--enable-static" "--enable-handle-fork" ];
+      # }))
       fmt
       ctags
       libedit
     ];
 
-  #NIX_CXXSTDLIB_COMPILE = " -frtti -DBOOST_SYSTEM_ENABLE_DEPRECATED=1 ";
-  BOOST_LIB_DIR = "${boost}/lib";
+  # NIX_CXXSTDLIB_COMPILE = " -frtti -DBOOST_SYSTEM_ENABLE_DEPRECATED=1 ";
+  # BOOST_LIB_DIR = "${boost}/lib";
 
-  libPath = lib.makeLibraryPath [
-    llvmPackages.libllvm
-    llvmPackages.libclang
-    gmp
-    zlib
-    ncurses
-    libbsd
-    boost
-    boost.dev
-    boehmgc
-    libelf
-    libffi
-    glibcLocales
-    fmt
-    ctags
-    libedit
-  ];
+  # libPath = lib.makeLibraryPath [
+  #   llvmPackages.libllvm
+  #   llvmPackages.libclang
+  #   gmp
+  #   zlib
+  #   ncurses
+  #   libbsd
+  #   boost
+  #   boost.dev
+  #   boehmgc
+  #   libelf
+  #   libffi
+  #   glibcLocales
+  #   fmt
+  #   ctags
+  #   libedit
+  # ];
 
-  LD_LIBRARY_PATH = "${libPath}";
+  # LD_LIBRARY_PATH = "${libPath}";
 
   postPatch = ''
     echo "creating directories found in ${src}/repos.sexp"
@@ -438,10 +438,12 @@ stdenv.mkDerivation rec {
     mkdir -p "$XDG_CACHE_HOME"
 
     echo "executing koga with ${sbcl}/bin/sbcl"
-    ${sbcl}/bin/sbcl --script koga --skip-sync \
+    ${sbcl}/bin/sbcl --script koga \
+      --skip-sync \
       --prefix=$out \
       --cc=${llvmPackages.clang}/bin/clang \
       --cxx=${llvmPackages.clang}/bin/clang++ \
+      --pkg-config=${pkg-config}/bin/pkg-config \
       --ctags=${ctags}/bin/ctags \
       --jobs=$NIX_BUILD_CORES \
       --bin-path=$out/bin \
@@ -457,13 +459,13 @@ stdenv.mkDerivation rec {
     cd build
   '';
 
-  CLASP_SRC_DONTTOUCH = "true";
+  # CLASP_SRC_DONTTOUCH = "true";
 
   meta = with lib; {
     description =
       "A Common Lisp implementation based on LLVM with C++ integration";
     license = lib.licenses.lgpl21Plus;
-    maintainers = [ lib.maintainers.raskin ];
+    # maintainers = with lib.maintainers; [ raskin phossil OPNA2608 ];
     platforms = lib.platforms.linux;
     # Long build, high RAM requirement
     requiredSystemFeatures = [ "big-parallel" ];
