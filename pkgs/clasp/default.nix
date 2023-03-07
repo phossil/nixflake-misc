@@ -3,19 +3,14 @@
 , fetchFromGitHub
 , fetchFromGitLab
 , gmp
-, zlib
-, ncurses
 , boost
 , libelf
 , git
 , sbcl
-, libbsd
-, libffi
 , ninja
 , pkg-config
 , fmt
 , ctags
-, libedit
 }:
 
 let
@@ -331,17 +326,6 @@ stdenv.mkDerivation rec {
     boost
     libelf
     fmt
-    # are these needed? builds fine without them
-    #zlib
-    #ncurses
-    #libbsd
-    #libffi
-    #libedit
-    # why a second, static one? which one should this use?
-    #(boost.override {
-    #  enableStatic = true;
-    #  enableShared = false;
-    #})
   ] ++ (with llvmPackages; [
     libclang
   ]);
