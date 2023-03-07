@@ -434,6 +434,6 @@ stdenv.mkDerivation rec {
     platforms = lib.platforms.linux;
     # Long build, high RAM requirement
     requiredSystemFeatures = [ "big-parallel" ];
-    homepage = "https://github.com/clasp-developers/clasp";
+    homepage = "https://clasp-developers.github.io/";
   };
 }
