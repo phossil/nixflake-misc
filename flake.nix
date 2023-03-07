@@ -19,7 +19,6 @@
         # };
         clasp-common-lisp = with pkgs; callPackage ./pkgs/clasp {
           llvmPackages = llvmPackages_15;
-          stdenv = llvmPackages_15.stdenv;
         };
         qvwm = pkgs.callPackage ./pkgs/qvwm { };
         egmde = pkgs.callPackage ./pkgs/egmde { };
