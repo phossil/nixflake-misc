@@ -4,7 +4,6 @@
 , fetchFromGitLab
 , llvmPackages
 , glibcLocales
-, boehmgc
 , gmp
 , zlib
 , ncurses
@@ -316,8 +315,6 @@ stdenv.mkDerivation rec {
     fetchSubmodules = true;
   };
 
-  # checkInputs = [ glibcLocales ];
-
   nativeBuildInputs = [ git sbcl ninja pkg-config ] ++ (with llvmPackages; [
     llvm
     clang
@@ -336,46 +333,16 @@ stdenv.mkDerivation rec {
       ncurses
       libbsd
       boost
-      # boost.dev
-      # boehmgc
       libelf
       libffi
-      # glibcLocales
       (boost.override {
         enableStatic = true;
         enableShared = false;
       })
-      # (lib.overrideDerivation boehmgc (x: {
-      #   configureFlags = (x.configureFlags or [ ])
-      #   ++ [ "--enable-static" "--enable-handle-fork" ];
-      # }))
       fmt
       ctags
       libedit
     ];
-
-  # NIX_CXXSTDLIB_COMPILE = " -frtti -DBOOST_SYSTEM_ENABLE_DEPRECATED=1 ";
-  # BOOST_LIB_DIR = "${boost}/lib";
-
-  # libPath = lib.makeLibraryPath [
-  #   llvmPackages.libllvm
-  #   llvmPackages.libclang
-  #   gmp
-  #   zlib
-  #   ncurses
-  #   libbsd
-  #   boost
-  #   boost.dev
-  #   boehmgc
-  #   libelf
-  #   libffi
-  #   glibcLocales
-  #   fmt
-  #   ctags
-  #   libedit
-  # ];
-
-  # LD_LIBRARY_PATH = "${libPath}";
 
   postPatch = ''
     echo "creating directories found in ${src}/repos.sexp"
@@ -459,13 +426,11 @@ stdenv.mkDerivation rec {
     cd build
   '';
 
-  # CLASP_SRC_DONTTOUCH = "true";
-
   meta = with lib; {
     description =
       "A Common Lisp implementation based on LLVM with C++ integration";
     license = lib.licenses.lgpl21Plus;
-    # maintainers = with lib.maintainers; [ raskin phossil OPNA2608 ];
+    maintainers = with lib.maintainers; [ raskin phossil OPNA2608 ];
     platforms = lib.platforms.linux;
     # Long build, high RAM requirement
     requiredSystemFeatures = [ "big-parallel" ];
