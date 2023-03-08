@@ -400,7 +400,8 @@ stdenv.mkDerivation rec {
       --prefix=$out/ \
       --bin-path=$out/bin/ \
       --lib-path=$out/lib/clasp/ \
-      --share-path=$out/share/clasp/
+      --share-path=$out/share/clasp/ \
+      --reproducible-build
 
     runHook postConfigure
   '';
