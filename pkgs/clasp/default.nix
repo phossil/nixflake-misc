@@ -401,7 +401,8 @@ stdenv.mkDerivation rec {
       --bin-path=$out/bin/ \
       --lib-path=$out/lib/clasp/ \
       --share-path=$out/share/clasp/ \
-      --reproducible-build
+      --reproducible-build \
+      --extensions=seqan-clasp
 
     runHook postConfigure
   '';
