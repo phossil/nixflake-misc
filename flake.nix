@@ -27,6 +27,7 @@
         lainwm = pkgs.callPackage ./pkgs/lainwm { };
         # broken
         musicnya-desktop = pkgs.callPackage ./pkgs/musicnya-desktop { };
+        lem = pkgs.callPackage ./pkgs/lem { };
       };
     };
 }
