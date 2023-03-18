@@ -28,6 +28,7 @@
         # broken
         musicnya-desktop = pkgs.callPackage ./pkgs/musicnya-desktop { };
         lem = pkgs.callPackage ./pkgs/lem { };
+        wapanel = pkgs.callPackage ./pkgs/wapanel { };
       };
     };
 }
