@@ -20,7 +20,6 @@
 , discount
 , pkg-config
 , openssl
-, llvmPackages
 }:
 
 let
@@ -218,25 +217,11 @@ gnustep.gsmakeDerivation rec {
     sha256 = "08mqd0q0ag92y2c5hzaa8vb21maszx7g5bacnv3kg3mkkz3gyrps";
   };
 
-  /*
-    impureEnvVars = lib.fetchers.proxyImpureEnvVars ++ [
-    "GIT_PROXY_COMMAND"
-    "SOCKS_SERVER"
-    ];
-  */
-
-
   nativeBuildInputs = [
-    #cmake
     pkg-config
-    #clang
-    #git
   ];
 
-  buildInputs = with llvmPackages;
-    [
-      llvm
-    ] ++ [
+  buildInputs = [
       gnustep.base
       gnustep.gui
       gnustep.back
@@ -256,6 +241,9 @@ gnustep.gsmakeDerivation rec {
     ];
 
   postPatch = ''
+    echo "Disabling Languages because there is no LLVM 3 here TuT"
+    substituteInPlace GNUmakefile --replace "Languages" "#Languages"
+
     echo "creating directories found in ${src}/etoile-fetch.sh"
     mkdir -p $(grep -ri "etoilefetch " etoile-fetch.sh | sed 's/\.//g' | awk '{print $2 "/" $3}')
 
@@ -295,9 +283,6 @@ gnustep.gsmakeDerivation rec {
 
   cmakeFlags = [
     "-DCMAKE_INSTALL_LIBDIR=lib"
-    #"-DCMAKE_C_COMPILER=clang"
-    #"-DCMAKE_CXX_COMPILER=clang++"
-    "-DTESTS=FALSE"
   ];
 
   meta = with lib; {
@@ -305,8 +290,8 @@ gnustep.gsmakeDerivation rec {
     broken = true;
     homepage = "http://etoileos.com/";
     description = "user-friendly GNUstep environment";
-    maintainers = [ phossil ];
-    # platforms = platforms.linux;
-    # license = licenses.agpl3Plus;
+    maintainers = with maintainers; [ phossil ];
+    platforms = [ "x86_64-linux" ];
+    license = with licenses; [ mit bsd3 asl20 lgpl21Only ];
   };
 }

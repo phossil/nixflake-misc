@@ -14,9 +14,7 @@
       packages.${system} = {
         loudgain = pkgs.callPackage ./pkgs/loudgain { };
         # broken
-        # etoile = pkgs.callPackage ./pkgs/etoile {
-        #   llvmPackages = llvmPackages_37;
-        # };
+        etoile = pkgs.callPackage ./pkgs/etoile { };
         clasp-common-lisp = with pkgs; callPackage ./pkgs/clasp {
           llvmPackages = llvmPackages_15;
         };
