@@ -242,7 +242,10 @@ gnustep.gsmakeDerivation rec {
 
   postPatch = ''
     echo "Disabling Languages because there is no LLVM 3 here TuT"
-    substituteInPlace GNUmakefile --replace "Languages" "#Languages"
+    # doc generation is enabled tho
+    substituteInPlace GNUmakefile \
+      --replace "Languages" "#Languages" \
+      --replace "#Documentation" "Documentation"
 
     echo "creating directories found in ${src}/etoile-fetch.sh"
     mkdir -p $(grep -ri "etoilefetch " etoile-fetch.sh | sed 's/\.//g' | awk '{print $2 "/" $3}')
