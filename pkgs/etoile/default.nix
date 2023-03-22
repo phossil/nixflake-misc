@@ -223,24 +223,24 @@ gnustep.gsmakeDerivation rec {
   ];
 
   buildInputs = [
-      gnustep.base
-      gnustep.gui
-      gnustep.back
-      libpng
-      zlib
-      oniguruma
-      dbus
-      libstartup_notification
-      libXcursor
-      lemon
-      gmp
-      sqlite
-      ffmpeg
-      graphviz
-      discount
-      openssl
-      llvm
-    ];
+    gnustep.base
+    gnustep.gui
+    gnustep.back
+    libpng
+    zlib
+    oniguruma
+    dbus
+    libstartup_notification
+    libXcursor
+    lemon
+    gmp
+    sqlite
+    ffmpeg
+    graphviz
+    discount
+    openssl
+    llvm
+  ];
 
   postPatch = ''
     echo "Enabling doc generation"
