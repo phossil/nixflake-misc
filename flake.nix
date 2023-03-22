@@ -15,6 +15,7 @@
         loudgain = pkgs.callPackage ./pkgs/loudgain { };
         # broken
         etoile = pkgs.callPackage ./pkgs/etoile { };
+        llvm = pkgs.callPackage ./pkgs/etoile/llvm.nix { };
         clasp-common-lisp = with pkgs; callPackage ./pkgs/clasp {
           llvmPackages = llvmPackages_15;
         };
