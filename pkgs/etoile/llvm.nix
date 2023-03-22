@@ -5,48 +5,39 @@
 , python2
 , fetchpatch
 }:
-
 let
   clang = fetchurl {
-    url = "https://releases.llvm.org/3.7.1/cfe-3.7.1.src.tar.xz";
-    sha256 = "0x065d0w9b51xvdjxwfzjxng0gzpbx45fgiaxpap45ragi61dqjn";
+    url = "https://releases.llvm.org/3.3/cfe-3.3.src.tar.gz";
+    sha256 = "15mrvw43s4frk1j49qr4v5viq68h8qlf10qs6ghd6mrsmgj5vddi";
   };
 in
 stdenv.mkDerivation rec {
   pname = "llvm";
-  version = "3.7.1";
+  version = "3.3";
 
   src = fetchurl {
-    url = "https://releases.llvm.org/3.7.1/llvm-${version}.src.tar.xz";
-    sha256 = "1masakdp9g2dan1yrazg7md5am2vacbkb3nahb3dchpc1knr8xxy";
+    url = "https://releases.llvm.org/${version}/llvm-${version}.src.tar.gz";
+    sha256 = "0y3mfbb5qzcpw3v5qncn69x1hdrrrfirgs82ypi2annhf0g6nxk8";
   };
+
+  unpackPhase = ''
+    echo "Unpacking LLVM"
+    unpackFile ${src}
+    mv llvm-${version}.src llvm
+    sourceRoot=$PWD/llvm
+
+    echo "Unpacking Clang"
+    unpackFile ${clang}
+    mkdir -p tools/clang
+    mv cfe-${version}.src tools/clang
+  '';
 
   nativeBuildInputs = [
     cmake
     python2
   ];
 
-  sourceRoot = "llvm-3.7.1.src";
-
-  prePatch = ''
-    echo "creating directory for clang"
-    mkdir -p tools/clang
-    mkdir -p tools/compiler-rt
-
-    echo "unpacking ${clang}"
-    tar -xf ${clang} --strip-components=1 \
-      --directory=tools/clang
-
-    chmod -R u+rwX .
-  '';
-
-  enableParallelBuilding = true;
-
-  outputs = [ "dev" "out" ];
-
   meta = with lib; {
-    # WIP
-    #broken = true;
     description =
       "A collection of modular and reusable compiler and toolchain technologies - private Etoile instance";
     homepage = "https://llvm.org/";
