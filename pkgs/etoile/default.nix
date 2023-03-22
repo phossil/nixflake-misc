@@ -20,6 +20,7 @@
 , discount
 , pkg-config
 , openssl
+, llvm
 }:
 
 let
@@ -238,13 +239,12 @@ gnustep.gsmakeDerivation rec {
       graphviz
       discount
       openssl
+      llvm
     ];
 
   postPatch = ''
-    echo "Disabling Languages because there is no LLVM 3 here TuT"
-    # doc generation is enabled tho
+    echo "Enabling doc generation"
     substituteInPlace GNUmakefile \
-      --replace "Languages" "#Languages" \
       --replace "#Documentation" "Documentation"
 
     echo "creating directories found in ${src}/etoile-fetch.sh"
@@ -285,11 +285,12 @@ gnustep.gsmakeDerivation rec {
   '';
 
   cmakeFlags = [
-    "-DCMAKE_INSTALL_LIBDIR=lib"
+    "-DCMAKE_C_COMPILER=${llvm}/bin/clang"
+    "-DCMAKE_CXX_COMPILER=${llvm}/bin/clang++"
   ];
 
   meta = with lib; {
-    # marked as broken bc of broken llvm 3.7 depencency    
+    # marked as broken bc llvm headers are not found
     broken = true;
     homepage = "http://etoileos.com/";
     description = "user-friendly GNUstep environment";

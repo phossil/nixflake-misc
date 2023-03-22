@@ -11,11 +11,8 @@ let
     url = "https://releases.llvm.org/3.7.1/cfe-3.7.1.src.tar.xz";
     sha256 = "0x065d0w9b51xvdjxwfzjxng0gzpbx45fgiaxpap45ragi61dqjn";
   };
-  compiler-rt = fetchurl {
-    url = "https://releases.llvm.org/3.7.1/compiler-rt-3.7.1.src.tar.xz";
-    sha256 = "10c1mz2q4bdq9bqfgr3dirc6hz1h3sq8573srd5q5lr7m7j6jiwx";
-  };
-in stdenv.mkDerivation rec {
+in
+stdenv.mkDerivation rec {
   pname = "llvm";
   version = "3.7.1";
 
@@ -32,25 +29,24 @@ in stdenv.mkDerivation rec {
   sourceRoot = "llvm-3.7.1.src";
 
   prePatch = ''
-    echo "creating directories for clang and compiler-rt"
+    echo "creating directory for clang"
     mkdir -p tools/clang
     mkdir -p tools/compiler-rt
 
-    echo "unpacking ${clang} and ${compiler-rt}"
+    echo "unpacking ${clang}"
     tar -xf ${clang} --strip-components=1 \
       --directory=tools/clang
-    tar -xf ${compiler-rt} --strip-components=1 \
-      --directory=tools/compiler-rt
-
-    echo "fixerating cmake"
-    substituteInPlace cmake/config-ix.cmake --replace "if(WIN32)" "if(1)"
 
     chmod -R u+rwX .
   '';
 
+  enableParallelBuilding = true;
+
+  outputs = [ "dev" "out" ];
+
   meta = with lib; {
     # WIP
-    broken = true;
+    #broken = true;
     description =
       "A collection of modular and reusable compiler and toolchain technologies - private Etoile instance";
     homepage = "https://llvm.org/";
