@@ -1,10 +1,7 @@
 { lib
 , stdenv
-, multiStdenv
-, cmake
 , fetchFromGitHub
 , fetchurl
-, ninja
 , gnustep
 , libpng
 , zlib
@@ -283,11 +280,6 @@ gnustep.gsmakeDerivation rec {
 
     chmod -R u+rwX .
   '';
-
-  cmakeFlags = [
-    "-DCMAKE_C_COMPILER=${llvm}/bin/clang"
-    "-DCMAKE_CXX_COMPILER=${llvm}/bin/clang++"
-  ];
 
   meta = with lib; {
     # marked as broken bc llvm headers are not found
