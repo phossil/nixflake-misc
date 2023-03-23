@@ -32,6 +32,8 @@
         # broken bc im stupid
         lem = pkgs.callPackage ./pkgs/lem { };
         wapanel = pkgs.callPackage ./pkgs/wapanel { };
+        # broken bc missing dep
+        nimble-commander = pkgs.callPackage ./pkgs/nimble-commander { };
       };
     };
 }
