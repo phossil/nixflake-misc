@@ -11,29 +11,29 @@
       lib = nixpkgs.lib;
     in
     {
-      packages.${system} = {
-        loudgain = pkgs.callPackage ./pkgs/loudgain { };
+      packages.${system} = with pkgs; {
+        loudgain = callPackage ./pkgs/loudgain { };
         # broken
-        etoile = pkgs.callPackage ./pkgs/etoile {
-          llvm = pkgs.callPackage ./pkgs/etoile/llvm.nix {
-            stdenv = pkgs.gcc49Stdenv;
+        etoile = callPackage ./pkgs/etoile {
+          llvm = callPackage ./pkgs/etoile/llvm.nix {
+            stdenv = gcc49Stdenv;
           };
         };
-        clasp-common-lisp = with pkgs; callPackage ./pkgs/clasp {
+        clasp-common-lisp = callPackage ./pkgs/clasp {
           llvmPackages = llvmPackages_15;
         };
-        qvwm = pkgs.callPackage ./pkgs/qvwm { };
-        egmde = pkgs.callPackage ./pkgs/egmde { };
-        sfwbar = pkgs.callPackage ./pkgs/sfwbar { };
+        qvwm = callPackage ./pkgs/qvwm { };
+        egmde = callPackage ./pkgs/egmde { };
+        sfwbar = callPackage ./pkgs/sfwbar { };
         # broken
-        lainwm = pkgs.callPackage ./pkgs/lainwm { };
+        lainwm = callPackage ./pkgs/lainwm { };
         # broken
-        musicnya-desktop = pkgs.callPackage ./pkgs/musicnya-desktop { };
+        musicnya-desktop = callPackage ./pkgs/musicnya-desktop { };
         # broken bc im stupid
-        lem = pkgs.callPackage ./pkgs/lem { };
-        wapanel = pkgs.callPackage ./pkgs/wapanel { };
+        lem = callPackage ./pkgs/lem { };
+        wapanel = callPackage ./pkgs/wapanel { };
         # broken bc missing dep
-        nimble-commander = pkgs.callPackage ./pkgs/nimble-commander { };
+        nimble-commander = callPackage ./pkgs/nimble-commander { };
       };
     };
 }
