@@ -4,9 +4,13 @@
 , meson
 , ninja
 , pkgconfig
-, libpulseaudio
 , gtk3
 , gtk-layer-shell
+, libpulseaudio
+, wayland-protocols
+, wayland
+, wayland-scanner
+, xdg-utils
 }:
 
 stdenv.mkDerivation rec {
@@ -28,9 +32,13 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
-    libpulseaudio
     gtk-layer-shell
     gtk3
+    libpulseaudio    
+    wayland-protocols
+    wayland
+    wayland-scanner
+    xdg-utils
   ];
 
   postPatch = ''
