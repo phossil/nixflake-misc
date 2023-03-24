@@ -34,7 +34,7 @@ stdenv.mkDerivation rec {
   buildInputs = [
     gtk-layer-shell
     gtk3
-    libpulseaudio    
+    libpulseaudio
     wayland-protocols
     wayland
     wayland-scanner

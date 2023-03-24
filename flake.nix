@@ -12,6 +12,7 @@
       libs-xcode = pkgs.callPackage ./pkgs/libs-xcode { };
     in
     {
+      # these are yet to be added to nixpkgs
       packages.${system} = with pkgs; {
         loudgain = callPackage ./pkgs/loudgain { };
         # broken
@@ -39,5 +40,8 @@
         };
         libs-xcode = libs-xcode;
       };
+
+      # make the flake look pretty :)
+      formatter.${system} = pkgs.nixpkgs-fmt;
     };
 }
