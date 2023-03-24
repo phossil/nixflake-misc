@@ -9,6 +9,7 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       lib = nixpkgs.lib;
+      libs-xcode = pkgs.callPackage ./pkgs/libs-xcode { };
     in
     {
       packages.${system} = with pkgs; {
@@ -33,7 +34,10 @@
         lem = callPackage ./pkgs/lem { };
         wapanel = callPackage ./pkgs/wapanel { };
         # broken bc missing dep
-        nimble-commander = callPackage ./pkgs/nimble-commander { };
+        nimble-commander = callPackage ./pkgs/nimble-commander {
+          libs-xcode = libs-xcode;
+        };
+        libs-xcode = libs-xcode;
       };
     };
 }

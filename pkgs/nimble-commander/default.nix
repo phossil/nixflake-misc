@@ -1,6 +1,7 @@
 { lib
 , fetchFromGitHub
 , gnustep
+, libs-xcode
 }:
 
 gnustep.gsmakeDerivation rec {
@@ -15,15 +16,26 @@ gnustep.gsmakeDerivation rec {
     fetchSubmodules = true;
   };
 
+  nativeBuildInputs = [
+    libs-xcode
+  ];
+
   buildInputs = [
     gnustep.base
     gnustep.gui
     gnustep.back
   ];
 
+  buildPhase = ''
+    runHook preBuild
+
+    ${libs-xcode}/bin/buildtool
+
+    runHook postBuild
+  '';
+
   meta = with lib; {
-    # marked as broken bc `gnustep.libs-xcode` does not
-    # exist in nixpkgs
+    # marked as broken bc no executable is installed
     broken = true;
     description = "dual-pane file manager for macOS";
     homepage = "https://magnumbytes.com/";
