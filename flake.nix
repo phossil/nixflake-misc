@@ -9,7 +9,6 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       lib = nixpkgs.lib;
-      libs-xcode = pkgs.callPackage ./pkgs/libs-xcode { };
     in
     {
       # these are yet to be added to nixpkgs
@@ -36,9 +35,9 @@
         wapanel = callPackage ./pkgs/wapanel { };
         # broken bc missing dep
         nimble-commander = callPackage ./pkgs/nimble-commander {
-          libs-xcode = libs-xcode;
+          libs-xcode = self.packages.${system}.libs-xcode;
         };
-        libs-xcode = libs-xcode;
+        libs-xcode = pkgs.callPackage ./pkgs/libs-xcode { };
       };
 
       # make the flake look pretty :)
