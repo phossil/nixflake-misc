@@ -41,6 +41,8 @@
         # broken
         Terminal = callPackage ./pkgs/Terminal { };
         PRICE = callPackage ./pkgs/gnustep/PRICE { };
+        # broken
+        gnustep-gap = callPackage ./pkgs/gnustep/gap { };
       };
 
       # make the flake look pretty :)
