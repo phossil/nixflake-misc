@@ -43,6 +43,7 @@
         PRICE = callPackage ./pkgs/gnustep/PRICE { };
         # broken
         gnustep-gap = callPackage ./pkgs/gnustep/gap { };
+        StepSync = callPackage ./pkgs/gnustep/StepSync { };
       };
 
       # make the flake look pretty :)
