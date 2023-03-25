@@ -33,11 +33,13 @@
         # broken bc im stupid
         lem = callPackage ./pkgs/lem { };
         wapanel = callPackage ./pkgs/wapanel { };
-        # broken bc missing dep
+        # broken
         nimble-commander = callPackage ./pkgs/nimble-commander {
           libs-xcode = self.packages.${system}.libs-xcode;
         };
         libs-xcode = callPackage ./pkgs/libs-xcode { };
+        # broken
+        Terminal = callPackage ./pkgs/Terminal { };
       };
 
       # make the flake look pretty :)
