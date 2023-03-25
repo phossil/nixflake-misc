@@ -35,11 +35,11 @@
         wapanel = callPackage ./pkgs/wapanel { };
         # broken
         nimble-commander = callPackage ./pkgs/nimble-commander {
-          libs-xcode = self.packages.${system}.libs-xcode;
+          libs-xcode = self.packages.${system}.xcode;
         };
-        libs-xcode = callPackage ./pkgs/libs-xcode { };
+        xcode = callPackage ./pkgs/gnustep/xcode { };
         # broken
-        Terminal = callPackage ./pkgs/Terminal { };
+        Terminal = callPackage ./pkgs/gnustep/Terminal { };
         PRICE = callPackage ./pkgs/gnustep/PRICE { };
         # broken
         gnustep-gap = callPackage ./pkgs/gnustep/gap { };
