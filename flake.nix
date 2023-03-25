@@ -37,7 +37,7 @@
         nimble-commander = callPackage ./pkgs/nimble-commander {
           libs-xcode = self.packages.${system}.libs-xcode;
         };
-        libs-xcode = pkgs.callPackage ./pkgs/libs-xcode { };
+        libs-xcode = callPackage ./pkgs/libs-xcode { };
       };
 
       # make the flake look pretty :)
