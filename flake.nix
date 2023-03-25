@@ -44,6 +44,7 @@
         # broken
         gnustep-gap = callPackage ./pkgs/gnustep/gap { };
         StepSync = callPackage ./pkgs/gnustep/StepSync { };
+        plugins-themes-Gtk = callPackage ./pkgs/gnustep/plugins-themes-Gtk { };
       };
 
       # make the flake look pretty :)
