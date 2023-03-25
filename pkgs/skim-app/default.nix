@@ -1,19 +1,17 @@
 { lib
-, fetchFromGitHub
+, fetchsvn
 , gnustep
 , libs-xcode
 }:
 
 gnustep.gsmakeDerivation rec {
-  pname = "nimble-commander";
-  version = "1.2.6";
+  pname = "skim-app";
+  version = "1.6.15";
 
-  src = fetchFromGitHub {
-    owner = "mikekazakov";
-    repo = pname;
-    rev = "073439e280b3d8d57115588c87c7e39fd29c9387";
-    sha256 = "huEFLwAxWyQOjv1+qOLnJurV2akAcyRQaWiKmuJztkM=";
-    fetchSubmodules = true;
+  src = fetchsvn {
+    url = "http://svn.code.sf.net/p/${pname}/code/trunk/";
+    rev = "13356";
+    sha256 = "00pmns82d0cq25hgw7h5iqyky6v0vi5rafd2qm1fibzknxq2n88b";
   };
 
   nativeBuildInputs = [
@@ -37,9 +35,9 @@ gnustep.gsmakeDerivation rec {
   meta = with lib; {
     # broken, gnustep.xcode is WIP
     broken = true;
-    description = "dual-pane file manager for macOS";
-    homepage = "https://magnumbytes.com/";
-    license = licenses.gpl3Plus;
+    description = "PDF reader and note-taker for OS X";
+    homepage = "https://skim-app.sourceforge.io/";
+    license = licenses.bsd3;
     maintainers = with maintainers; [ phossil ];
     platforms = platforms.linux;
   };

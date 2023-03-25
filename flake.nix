@@ -45,6 +45,10 @@
         gnustep-gap = callPackage ./pkgs/gnustep/gap { };
         StepSync = callPackage ./pkgs/gnustep/StepSync { };
         plugins-themes-Gtk = callPackage ./pkgs/gnustep/plugins-themes-Gtk { };
+        # broken
+        skim-app = callPackage ./pkgs/skim-app {
+          libs-xcode = self.packages.${system}.xcode;
+        };
       };
 
       # make the flake look pretty :)
