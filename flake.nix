@@ -40,6 +40,7 @@
         libs-xcode = callPackage ./pkgs/libs-xcode { };
         # broken
         Terminal = callPackage ./pkgs/Terminal { };
+        PRICE = callPackage ./pkgs/gnustep/PRICE { };
       };
 
       # make the flake look pretty :)
