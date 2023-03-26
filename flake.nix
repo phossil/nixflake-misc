@@ -52,6 +52,7 @@
         cenon = callPackage ./pkgs/gnustep/cenon { };
         help_viewer = callPackage ./pkgs/gnustep/helpviewer { };
         ftp = callPackage ./pkgs/gnustep/ftp { };
+        graphos = callPackage ./pkgs/gnustep/graphos { };
       };
 
       # make the flake look pretty :)
