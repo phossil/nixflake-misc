@@ -25,10 +25,11 @@ gnustep.gsmakeDerivation rec {
   # "/Library/Application Support"
   postUnpack = ''
     echo "Unpacking CenonLibrary"
-    cd Cenon/Library/
+    mkdir -p $out/lib/GNUstep/Libraries/
+    cd $out/lib/GNUstep/Libraries/
     unpackFile ${CenonLibrary}
-    cd ../../
-   '';
+    cd /build
+  '';
 
   meta = with lib; {
     # someone help me how do i install the library aaaaa

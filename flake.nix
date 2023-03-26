@@ -49,6 +49,7 @@
         skim-app = callPackage ./pkgs/skim-app {
           libs-xcode = self.packages.${system}.xcode;
         };
+        # broken
         cenon = callPackage ./pkgs/gnustep/cenon { };
       };
 
