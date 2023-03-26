@@ -50,7 +50,7 @@
         };
         # broken
         cenon = callPackage ./pkgs/gnustep/cenon { };
-        #help_viewer = callPackage ./pkgs/gnustep/helpviewer { }
+        help_viewer = callPackage ./pkgs/gnustep/helpviewer { };
       };
 
       # make the flake look pretty :)
