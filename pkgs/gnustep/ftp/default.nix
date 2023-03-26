@@ -17,8 +17,8 @@ gnustep.gsmakeDerivation rec {
   meta = with lib; {
     description = "FTP client for GNUstep";
     homepage = "https://gap.nongnu.org/ftp/";
-    # i did not see a license/copying file
-    #license = licenses.gpl2Only;
+    # license is noted in the info panel
+    license = licenses.gpl2Plus;
     maintainers = with maintainers; [ phossil ];
     platforms = platforms.linux;
   };
