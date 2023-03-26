@@ -58,6 +58,10 @@
         # broken
         steptalk = callPackage ./pkgs/gnustep/steptalk { };
         text_edit = callPackage ./pkgs/gnustep/textedit { };
+        # broken
+        hex_fiend = callPackage ./pkgs/hexfiend {
+          gnustep-xcode = self.packages.${system}.xcode;
+        };
       };
 
       # make the flake look pretty :)
