@@ -62,6 +62,10 @@
         hex_fiend = callPackage ./pkgs/hexfiend {
           gnustep-xcode = self.packages.${system}.xcode;
         };
+        # broken
+        adium = callPackage ./pkgs/adium {
+          gnustep-xcode = self.packages.${system}.xcode;
+        };
       };
 
       # make the flake look pretty :)
