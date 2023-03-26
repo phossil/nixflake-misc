@@ -53,6 +53,10 @@
         help_viewer = callPackage ./pkgs/gnustep/helpviewer { };
         ftp = callPackage ./pkgs/gnustep/ftp { };
         graphos = callPackage ./pkgs/gnustep/graphos { };
+        # broken
+        code_editor = callPackage ./pkgs/gnustep/codeeditor { };
+        # broken
+        #steptalk = callPackage ./pkgs/gnustep/steptalk { };
       };
 
       # make the flake look pretty :)
