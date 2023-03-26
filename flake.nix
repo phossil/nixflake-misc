@@ -49,6 +49,7 @@
         skim-app = callPackage ./pkgs/skim-app {
           libs-xcode = self.packages.${system}.xcode;
         };
+        cenon = callPackage ./pkgs/gnustep/cenon { };
       };
 
       # make the flake look pretty :)
