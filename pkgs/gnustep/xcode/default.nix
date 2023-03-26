@@ -15,11 +15,7 @@ gnustep.gsmakeDerivation rec {
     fetchSubmodules = true;
   };
 
-  buildInputs = [
-    gnustep.base
-    gnustep.gui
-    gnustep.back
-  ];
+  buildInputs = with gnustep; [ base back gui ];
 
   meta = with lib; {
     description = "GNUstep library for building Xcode projects";
