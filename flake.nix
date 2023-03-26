@@ -51,6 +51,7 @@
         # broken
         cenon = callPackage ./pkgs/gnustep/cenon { };
         help_viewer = callPackage ./pkgs/gnustep/helpviewer { };
+        ftp = callPackage ./pkgs/gnustep/ftp { };
       };
 
       # make the flake look pretty :)
