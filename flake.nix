@@ -56,7 +56,7 @@
         # broken
         code_editor = callPackage ./pkgs/gnustep/codeeditor { };
         # broken
-        #steptalk = callPackage ./pkgs/gnustep/steptalk { };
+        steptalk = callPackage ./pkgs/gnustep/steptalk { };
       };
 
       # make the flake look pretty :)
