@@ -37,7 +37,7 @@
         nimble-commander = callPackage ./pkgs/nimble-commander {
           gnustep-xcode = self.packages.${system}.xcode;
         };
-        xcode = callPackage ./pkgs/gnustep/xcode { };
+        xcode = callPackage ./pkgs/gnustep/libs/xcode { };
         terminal = callPackage ./pkgs/gnustep/terminal { };
         price = callPackage ./pkgs/gnustep/price { };
         # broken
@@ -67,9 +67,9 @@
           gnustep-xcode = self.packages.${system}.xcode;
         };
         # broken
-        corebase = callPackage ./pkgs/gnustep/corebase { };
+        corebase = callPackage ./pkgs/gnustep/libs/corebase { };
         # broken
-        dbuskit = callPackage ./pkgs/gnustep/dbuskit { };
+        dbuskit = callPackage ./pkgs/gnustep/libs/dbuskit { };
       };
 
       # make the flake look pretty :)
