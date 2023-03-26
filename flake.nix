@@ -66,6 +66,8 @@
         adium = callPackage ./pkgs/adium {
           gnustep-xcode = self.packages.${system}.xcode;
         };
+        # broken
+        corebase = callPackage ./pkgs/gnustep/corebase { };
       };
 
       # make the flake look pretty :)
