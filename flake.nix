@@ -68,6 +68,8 @@
         };
         # broken
         corebase = callPackage ./pkgs/gnustep/corebase { };
+        # broken
+        dbuskit = callPackage ./pkgs/gnustep/dbuskit { };
       };
 
       # make the flake look pretty :)
