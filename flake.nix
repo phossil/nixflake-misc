@@ -35,21 +35,22 @@
         wapanel = callPackage ./pkgs/wapanel { };
         # broken
         nimble-commander = callPackage ./pkgs/nimble-commander {
-          libs-xcode = self.packages.${system}.xcode;
+          gnustep-xcode = self.packages.${system}.xcode;
         };
         xcode = callPackage ./pkgs/gnustep/xcode { };
-        Terminal = callPackage ./pkgs/gnustep/Terminal { };
-        PRICE = callPackage ./pkgs/gnustep/PRICE { };
+        terminal = callPackage ./pkgs/gnustep/terminal { };
+        price = callPackage ./pkgs/gnustep/price { };
         # broken
         gnustep-gap = callPackage ./pkgs/gnustep/gap { };
-        StepSync = callPackage ./pkgs/gnustep/StepSync { };
+        step_sync = callPackage ./pkgs/gnustep/stepsync { };
         plugins-themes-Gtk = callPackage ./pkgs/gnustep/plugins-themes-Gtk { };
         # broken
         skim-app = callPackage ./pkgs/skim-app {
-          libs-xcode = self.packages.${system}.xcode;
+          gnustep-xcode = self.packages.${system}.xcode;
         };
         # broken
         cenon = callPackage ./pkgs/gnustep/cenon { };
+        #help_viewer = callPackage ./pkgs/gnustep/helpviewer { }
       };
 
       # make the flake look pretty :)

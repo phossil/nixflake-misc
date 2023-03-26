@@ -4,11 +4,11 @@
 }:
 
 gnustep.gsmakeDerivation rec {
-  pname = "StepSync";
+  pname = "step_sync";
   version = "1.0";
 
   src = fetchurl {
-    url = "http://savannah.nongnu.org/download/gap/${pname}-${version}.tar.gz";
+    url = "http://savannah.nongnu.org/download/gap/StepSync-${version}.tar.gz";
     sha256 = "0f4xwf9wpqr7yf78829pfq1p8v5ridqi61146m1aa2r850wd5k4p";
   };
 

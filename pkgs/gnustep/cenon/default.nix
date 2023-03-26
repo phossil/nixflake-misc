@@ -10,11 +10,11 @@ let
   };
 in
 gnustep.gsmakeDerivation rec {
-  pname = "Cenon";
+  pname = "cenon";
   version = "4.0.2";
 
   src = fetchurl {
-    url = "http://cenon.download/source/${pname}-${version}.tar.bz2";
+    url = "http://cenon.download/source/Cenon-${version}.tar.bz2";
     sha256 = "0bzbn2kjzbjczp6ss8rsy0vj4p9x589q385p9qrccrrrkxvzya6j";
   };
 

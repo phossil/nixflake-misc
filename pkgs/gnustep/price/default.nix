@@ -4,11 +4,11 @@
 }:
 
 gnustep.gsmakeDerivation rec {
-  pname = "PRICE";
+  pname = "price";
   version = "1.3.0";
 
   src = fetchurl {
-    url = "mirror://sourceforge/price/${pname}-${version}.tar.gz";
+    url = "mirror://sourceforge/price/PRICE-${version}.tar.gz";
     sha256 = "16zl19pkz7rrrasygig1lc7jskq5z9n4b4lrji1kn0ii6w8wljs6";
   };
 

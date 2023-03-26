@@ -4,11 +4,11 @@
 }:
 
 gnustep.gsmakeDerivation rec {
-  pname = "Terminal";
+  pname = "terminal";
   version = "0.9.9";
 
   src = fetchurl {
-    url = "http://savannah.nongnu.org/download/gap/${pname}-${version}.tar.gz";
+    url = "http://savannah.nongnu.org/download/gap/Terminal-${version}.tar.gz";
     sha256 = "1s90q81wycrp6ngw4n0wal7c5gkk97g2q0c0q3lcs45xrnz1py17";
   };
 

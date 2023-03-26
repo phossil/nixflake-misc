@@ -1,7 +1,7 @@
 { lib
 , fetchFromGitHub
 , gnustep
-, libs-xcode
+, gnustep-xcode
 }:
 
 gnustep.gsmakeDerivation rec {
@@ -17,7 +17,7 @@ gnustep.gsmakeDerivation rec {
   };
 
   nativeBuildInputs = [
-    libs-xcode
+    gnustep-xcode
   ];
 
   buildInputs = [
@@ -29,7 +29,7 @@ gnustep.gsmakeDerivation rec {
   buildPhase = ''
     runHook preBuild
 
-    ${libs-xcode}/bin/buildtool
+    ${gnustep-xcode}/bin/buildtool
 
     runHook postBuild
   '';
