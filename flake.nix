@@ -38,7 +38,6 @@
           libs-xcode = self.packages.${system}.xcode;
         };
         xcode = callPackage ./pkgs/gnustep/xcode { };
-        # broken
         Terminal = callPackage ./pkgs/gnustep/Terminal { };
         PRICE = callPackage ./pkgs/gnustep/PRICE { };
         # broken
