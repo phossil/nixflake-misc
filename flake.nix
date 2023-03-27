@@ -80,6 +80,8 @@
         filer = callPackage ./pkgs/filer {
           gnustep-xcode = self.packages.${system}.xcode;
         };
+        # broken
+        cocotron = callPackage ./pkgs/cocotron { };
       };
 
       # make the flake look pretty :)
