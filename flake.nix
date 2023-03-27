@@ -73,6 +73,9 @@
         # broken
         opal = callPackage ./pkgs/gnustep/libs/opal { };
         simplewebkit = callPackage ./pkgs/gnustep/libs/simplewebkit { };
+        vespucci = callPackage ./pkgs/gnustep/vespucci {
+          simplewebkit = self.packages.${system}.simplewebkit;
+        };
       };
 
       # make the flake look pretty :)
