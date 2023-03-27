@@ -76,6 +76,10 @@
         vespucci = callPackage ./pkgs/gnustep/vespucci {
           simplewebkit = self.packages.${system}.simplewebkit;
         };
+        # broken
+        filer = callPackage ./pkgs/filer {
+          gnustep-xcode = self.packages.${system}.xcode;
+        };
       };
 
       # make the flake look pretty :)
