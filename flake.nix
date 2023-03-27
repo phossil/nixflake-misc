@@ -70,6 +70,7 @@
         corebase = callPackage ./pkgs/gnustep/libs/corebase { };
         # broken
         dbuskit = callPackage ./pkgs/gnustep/libs/dbuskit { };
+        opal = callPackage ./pkgs/gnustep/libs/opal { };
       };
 
       # make the flake look pretty :)
