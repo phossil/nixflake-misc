@@ -82,6 +82,8 @@
         };
         # broken
         cocotron = callPackage ./pkgs/cocotron { };
+        # broken
+        themes-win_ux_theme = callPackage ./pkgs/gnustep/plugins/themes-winuxtheme { };
       };
 
       # make the flake look pretty :)
