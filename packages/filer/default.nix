@@ -27,7 +27,7 @@ gnustep.gsmakeDerivation rec {
     # a parent directory
     substituteInPlace Makefile \
       --replace "head -1 ../../version.txt" "echo alpha"
-  '';  
+  '';
 
   buildPhase = ''
     runHook preBuild
