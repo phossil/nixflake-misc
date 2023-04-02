@@ -43,7 +43,7 @@
         # broken
         gnustep-gap = callPackage ./pkgs/gnustep/gap { };
         step_sync = callPackage ./pkgs/gnustep/stepsync { };
-        plugins-themes-Gtk = callPackage ./pkgs/gnustep/plugins-themes-Gtk { };
+        themes-gtk = callPackage ./pkgs/gnustep/plugins/themes-gtk { };
         # broken
         skim-app = callPackage ./pkgs/skim-app {
           gnustep-xcode = self.packages.${system}.xcode;
