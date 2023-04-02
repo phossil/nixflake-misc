@@ -13,7 +13,7 @@ gnustep.gsmakeDerivation rec {
   src = fetchFromGitHub {
     owner = "gnustep";
     repo = "libs-dbuskit";
-    rev = "c9db6a1c2a102529aefbf6164c64adae8c073a5d";
+    rev = version;
     sha256 = "QpvfDN4TApwfTFwQeY1L86fXnb6t68blieGd94o5qGM=";
     fetchSubmodules = true;
   };
@@ -22,9 +22,14 @@ gnustep.gsmakeDerivation rec {
 
   buildInputs = [ gnustep.base gnustep.gui dbus libclang ];
 
+  postPatch = ''
+    # the garbage collector no longer exists  
+    substituteInPlace Source/DKNotificationCenter.m \
+      --replace "GS_GC_HIDE(anObserver)" "anObserver" \
+      --replace "GS_GC_UNHIDE(observer)" "observer" \
+  '';
+
   meta = with lib; {
-    # libDBusKit.so: undefined reference to `GS_GC_HIDE'
-    broken = true;
     description = "DBus bindings for Objective-C applications";
     homepage = "http://www.gnustep.org/";
     license = licenses.lgpl21Only;

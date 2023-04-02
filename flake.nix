@@ -68,7 +68,6 @@
         };
         # broken
         corebase = callPackage ./pkgs/gnustep/libs/corebase { };
-        # broken
         dbuskit = callPackage ./pkgs/gnustep/libs/dbuskit { };
         # broken
         opal = callPackage ./pkgs/gnustep/libs/opal { };
