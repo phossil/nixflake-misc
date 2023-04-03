@@ -8,13 +8,13 @@
 
 gnustep.gsmakeDerivation rec {
   pname = "dbuskit";
-  version = "0.1.1";
+  version = "2021-01-19";
 
   src = fetchFromGitHub {
     owner = "gnustep";
     repo = "libs-dbuskit";
-    rev = version;
-    sha256 = "QpvfDN4TApwfTFwQeY1L86fXnb6t68blieGd94o5qGM=";
+    rev = "4dc9b56216e46e0e385b976b0605b965509ebbbd";
+    sha256 = "mZfN3FuMtZx4Zc9Flut5HKTWKcCIPLQh40TvhhNy3xA=";
     fetchSubmodules = true;
   };
 
@@ -23,10 +23,11 @@ gnustep.gsmakeDerivation rec {
   buildInputs = [ gnustep.base gnustep.gui dbus libclang ];
 
   postPatch = ''
-    # the garbage collector no longer exists  
-    substituteInPlace Source/DKNotificationCenter.m \
-      --replace "GS_GC_HIDE(anObserver)" "anObserver" \
-      --replace "GS_GC_UNHIDE(observer)" "observer" \
+    # the gnustep build system expects all additional
+    # make files to exist in gnustep.make
+    substituteInPlace Bundles/DKUserNotification/GNUmakefile \
+      --replace "\$(BASE_MAKEFILE)" \
+      "${gnustep.base}/share/GNUstep/Makefiles/Additional/base.make"
   '';
 
   meta = with lib; {
