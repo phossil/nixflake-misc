@@ -28,8 +28,7 @@ stdenv.mkDerivation rec {
 
     echo "Unpacking Clang"
     unpackFile ${clang}
-    mkdir -p tools/clang
-    mv cfe-${version}.src tools/clang
+    mv cfe-${version}.src llvm/tools/clang
   '';
 
   nativeBuildInputs = [
