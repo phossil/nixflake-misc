@@ -28,8 +28,6 @@ lib.makeScope pkgs.newScope (self: with self; {
   xcode = callPackage ./gnustep/libs/xcode { };
   terminal = callPackage ./gnustep/terminal { };
   price = callPackage ./gnustep/price { };
-  # broken
-  gnustep-gap = callPackage ./gnustep/gap { };
   step_sync = callPackage ./gnustep/stepsync { };
   themes-gtk = callPackage ./gnustep/plugins/themes-gtk { };
   # broken
