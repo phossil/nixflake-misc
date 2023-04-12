@@ -69,4 +69,5 @@ lib.makeScope pkgs.newScope (self: with self; {
   cocotron = callPackage ./cocotron { };
   # broken
   themes-win_ux_theme = callPackage ./gnustep/plugins/themes-winuxtheme { };
+  cpdup = callPackage ./cpdup { };
 })
