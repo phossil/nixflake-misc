@@ -8,17 +8,20 @@
 , gtk3
 , glib
 , gtk-layer-shell
+, libpulseaudio
+, libmpdclient
+, libxkbcommon
 }:
 
 stdenv.mkDerivation rec {
   pname = "sfwbar";
-  version = "1.0_beta9";
+  version = "1.0_beta10";
 
   src = fetchFromGitHub {
     owner = "LBCrion";
     repo = pname;
     rev = "v${version}";
-    sha256 = "JXi9mBe0gD8Z8elA5WzkUwvLL0F3ZzX6+hyNnWjnILg=";
+    sha256 = "WG2J0czjB7RstwKPy3C4D57P9Xh8xlSEPh6g2bDq8OA=";
   };
 
   nativeBuildInputs = [
@@ -31,6 +34,9 @@ stdenv.mkDerivation rec {
     json_c
     gtk-layer-shell
     gtk3
+    libpulseaudio
+    libmpdclient
+    libxkbcommon
   ];
 
   mesonFlags = [
