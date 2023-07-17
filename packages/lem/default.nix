@@ -3,20 +3,21 @@
 , fetchFromGitHub
 , makeWrapper
 , roswell
-, lispPackages_new
+, sbclPackages
 , openssl
 , ncurses
+, SDL2
 }:
 
 stdenv.mkDerivation rec {
   pname = "lem";
-  version = "1.10.0";
+  version = "2.0.0";
 
   src = fetchFromGitHub {
     owner = "lem-project";
     repo = pname;
     rev = "v${version}";
-    sha256 = "n+AyoGSKuVi8w9Z2pOWL8JNI2Jif6KCjLAw4+ubdJhw=";
+    sha256 = "SR17L8T0aejrIVqgAsUE5clBpSdkc4F5xPF+7PslpL4=";
     fetchSubmodules = true;
   };
 
@@ -25,7 +26,8 @@ stdenv.mkDerivation rec {
   buildInputs = [
     openssl
     ncurses
-  ] ++ (with lispPackages_new.sbclPackages; [
+    SDL2
+  ] ++ (with sbclPackages; [
     alexandria
     trivial-gray-streams
     trivial-types
@@ -39,7 +41,7 @@ stdenv.mkDerivation rec {
   ]);
 
   installPhase = ''
-    ros follow-dependency=t install lem-project/lem
+    ros follow-dependency=t install ./lem.asd
 
     mkdir -p $out/bin
     makeWrapper $src/bin/lem $out/bin/lem \
