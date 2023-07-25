@@ -49,7 +49,10 @@ lib.makeScope pkgs.newScope (self: with self; {
   cocotron = callPackage ./cocotron { };
   # broken
   themes-win_ux_theme = callPackage ./gnustep/plugins/themes-winuxtheme { };
+  # broken
   cpdup = callPackage ./cpdup { };
+  # broken
+  radium = callPackage ./radium { };
 
   # all broken bc macos projects with gnustep-xcode
   nimble-commander = callPackage ./nimble-commander {
