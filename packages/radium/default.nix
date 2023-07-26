@@ -5,31 +5,23 @@
 , unzip
 , desktop-file-utils
 , fftw
-, glu
-, gsfonts
+, libGLU
 , hicolor-icon-theme
 , jack2
 , liblo
-, liblrdf
+, lrdf
 , libmpc
 , libsndfile
 , python2
-, qt5-svg
-, qt5-webkit
-, qt5-x11extras
+, qt5
 , speex
-, ttf-bitstream-vera
-, ttf-croscore
-, ttf-lato
+, ttf_bitstream_vera
+, noto-fonts
 , boost
 , cmake
-, ladspa
-, libxcursor
-, libxinerama
-, libxkbfile
-, libxrandr
+, ladspa-sdk
+, xorg
 , llvm
-, qt5-tools
 }:
 
 stdenv.mkDerivation rec {
@@ -59,34 +51,34 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [
     boost
     cmake
-    ladspa
-    libxcursor
-    libxinerama
-    libxkbfile
-    libxrandr
     llvm
-    qt5-tools
   ];
 
-  buildInputs = [
+  buildInputs = with xorg; [
+    libXcursor
+    libXinerama
+    libxkbfile
+    libXrandr
+  ] ++ (with qt5; [
+	qttools
+	qtsvg
+    qtwebkit
+    qtx11extras
+  ]) ++ [
+    ladspa-sdk
     desktop-file-utils
     fftw
-    glu
-    gsfonts
+    libGLU
     hicolor-icon-theme
     jack2
     liblo
-    liblrdf
+    lrdf
     libmpc
     libsndfile
     python2
-    qt5-svg
-    qt5-webkit
-    qt5-x11extras
     speex
-    ttf-bitstream-vera
-    ttf-croscore
-    ttf-lato
+    ttf_bitstream_vera
+    noto-fonts
   ];
 
   cmakeFlags = [ "-DVSTSDK_PATH=${vst-sdk}/VST2_SDK" ];
@@ -104,8 +96,8 @@ stdenv.mkDerivation rec {
   meta = with lib; {
   	# broken am lazy
     broken = true;
-    homepage = "https://www.zrythm.org";
-    description = "highly automated and intuitive digital audio workstation";
+    homepage = "http://users.notam02.no/~kjetism/radium/";
+    description = "music editor with novel interface";
     platforms = platforms.linux;
     license = licenses.gpl2;
   };
