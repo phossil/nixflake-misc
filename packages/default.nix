@@ -21,39 +21,14 @@ lib.makeScope pkgs.newScope (self: with self; {
   # broken bc im stupid
   lem = callPackage ./lem { };
   wapanel = callPackage ./wapanel { };
-  xcode = callPackage ./gnustep/libs/xcode { };
-  terminal = callPackage ./gnustep/terminal { };
-  price = callPackage ./gnustep/price { };
-  step_sync = callPackage ./gnustep/stepsync { };
-  themes-gtk = callPackage ./gnustep/plugins/themes-gtk { };
-  # broken
-  cenon = callPackage ./gnustep/cenon { };
-  help_viewer = callPackage ./gnustep/helpviewer { };
-  ftp = callPackage ./gnustep/ftp { };
-  graphos = callPackage ./gnustep/graphos { };
-  # broken
-  code_editor = callPackage ./gnustep/codeeditor { };
-  # broken
-  steptalk = callPackage ./gnustep/steptalk { };
-  text_edit = callPackage ./gnustep/textedit { };
-  # broken
-  corebase = callPackage ./gnustep/libs/corebase { };
-  dbuskit = callPackage ./gnustep/libs/dbuskit { };
-  # broken
-  opal = callPackage ./gnustep/libs/opal { };
-  simplewebkit = callPackage ./gnustep/libs/simplewebkit { };
-  vespucci = callPackage ./gnustep/vespucci {
-    simplewebkit = self.simplewebkit;
-  };
   # broken
   cocotron = callPackage ./cocotron { };
-  # broken
-  themes-win_ux_theme = callPackage ./gnustep/plugins/themes-winuxtheme { };
   # broken
   cpdup = callPackage ./cpdup { };
   # broken
   radium = callPackage ./radium { };
 
+  /* depends on forked flake
   # all broken bc macos projects with gnustep-xcode
   nimble-commander = callPackage ./nimble-commander {
     gnustep-xcode = self.xcode;
@@ -71,4 +46,5 @@ lib.makeScope pkgs.newScope (self: with self; {
   filer = callPackage ./filer {
     gnustep-xcode = self.xcode;
   };
+  */
 })
