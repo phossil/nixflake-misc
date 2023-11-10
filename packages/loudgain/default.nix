@@ -1,6 +1,7 @@
 { lib
 , stdenv
 , fetchFromGitHub
+, fetchpatch
 , cmake
 , pkgconfig
 , ffmpeg
@@ -19,6 +20,15 @@ stdenv.mkDerivation rec {
     rev = "v${version}";
     sha256 = "018v102yk19v94ggdgqx70rz2j3p9jaxhmlrj20g2qx586gzxf2w";
   };
+
+  # /bin/ld: CMakeFiles/loudgain.dir/src/scan.c.o: in function `scan_init':
+  # /build/source/src/scan.c:73: undefined reference to `av_register_all'
+  patches = [
+    (fetchpatch {
+      url = "https://aur.archlinux.org/cgit/aur.git/plain/fix_ffmpeg5.patch?h=loudgain&id=1fec453d067b919954bbddce30813ded546075c4";
+      sha256 = "sha256-EbmgdlyM7L1eS7Xhc1oAl3Z3PHyMTfukP7dPYQQ0osY=";
+    })
+  ];
 
   nativeBuildInputs = [
     cmake
