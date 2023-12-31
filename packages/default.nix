@@ -7,4 +7,5 @@ lib.makeScope pkgs.newScope (self: with self; {
   wapanel = callPackage ./wapanel { };
   unifraktur-cook = callPackage ./unifraktur-cook { };
   unifraktur-maguntia = callPackage ./unifraktur-maguntia { };
+  brass_mono = callPackage ./brass-mono { };
 })
