@@ -6,13 +6,13 @@ stdenvNoCC.mkDerivation rec {
 
   src = fetchzip {
     url = "mirror://sourceforge/unifraktur/fonts/${pname}.${version}.zip";
-    hash = "sha256-nS7TN4fzw9+bCaAfeHsZ9uDDLkcjnrr7tk6NGk6ajMQ=";
+    hash = "sha256-Zz++XLshPntpqhFhy3rwErlAutNWkorBcrjUbNpvHxs=";
   };
 
   installPhase = ''
     runHook preInstall
 
-    install -Dm644 -t $out/share/fonts/truetype/ "${pname}.${version}"/*.ttf
+    install -Dm644 -t $out/share/fonts/truetype/ *.ttf
 
     runHook postInstall
   '';

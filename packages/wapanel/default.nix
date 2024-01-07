@@ -58,7 +58,7 @@ stdenv.mkDerivation rec {
       "Simple panel/status bar/task bar for your custom stacking Wayland-based desktop";
     homepage = "https://firstbober.github.io/wapanel";
     maintainers = with maintainers; [ phossil ];
-    platforms = [ "x86_64-linux" ];
+    platforms = platforms.linux;
     license = licenses.mit;
   };
 }
