@@ -19,7 +19,7 @@ stdenv.mkDerivation rec {
 
   src = fetchFromGitHub {
     owner = "asveikau";
-    repo = "qvwm";
+    repo = pname;
     rev = "a0b181ef52deb221c8ea4219755e3279278af3fd";
     sha256 = "Bq0N0RslBvjnpWfulWvlVmf7CewPQDMPIKC+BKAxQZA=";
   };
@@ -57,7 +57,7 @@ stdenv.mkDerivation rec {
     ''
       [Desktop Entry]
       Type=Xsession
-      Name=QVWM
+      Name=QvWM
       TryExec=@out@/bin/qvwm
       Exec=@out@/bin/qvwm
       Comment=Windows 9x lookalike window manager
@@ -74,6 +74,7 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     description = "'Windows Classic'-like X11 window manager";
     homepage = "https://github.com/asveikau/qvwm";
+    mainProgram = "qvwm";
     maintainers = with maintainers; [ phossil ];
     platforms = platforms.linux;
     license = licenses.gpl2;
