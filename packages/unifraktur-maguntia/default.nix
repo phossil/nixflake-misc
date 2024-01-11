@@ -20,6 +20,7 @@ stdenvNoCC.mkDerivation rec {
   meta = with lib; {
     homepage = "https://unifraktur.sourceforge.net/maguntia.html";
     description = "a Unicode Fraktur Font";
+    maintainers = with maintainers; [ phossil ];
     license = licenses.ofl;
     platforms = platforms.all;
   };
