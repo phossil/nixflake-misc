@@ -18,6 +18,7 @@
         unifraktur-cook = callPackage ./packages/unifraktur-cook { };
         unifraktur-maguntia = callPackage ./packages/unifraktur-maguntia { };
         brass_mono = callPackage ./packages/brass-mono { };
+        #oolite = callPackage ./packages/oolite { };
       };
 
       # make the flake look pretty :)
