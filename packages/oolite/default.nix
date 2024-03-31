@@ -7,7 +7,7 @@
 , SDL_mixer
 , nspr
 , openal
-, espeak
+, espeak-classic
 , libGLU
 , libogg
 , libvorbis
@@ -42,7 +42,7 @@ clangStdenv.mkDerivation rec {
     SDL_mixer
     nspr
     openal
-    espeak
+    espeak-classic
     libGLU
     libogg
     libvorbis
@@ -57,9 +57,11 @@ clangStdenv.mkDerivation rec {
     "-Wno-incompatible-function-pointer-types"
   ];
 
+  env.LD_LIBRARY_PATH = lib.makeLibraryPath [ espeak-classic ];
+
   meta = with lib; {
-    # build fails at linking stage
-    # linker cannot find espeak
+    # build fails at linking stage:
+    # /build/source/src/Core/OOCache.m:1058:(.text+0xcff): undefined reference to `__objc_ivar_offset_OOCache.cache.^{OOCacheImpl=^{OOCacheNode}^{OOCacheNode}^{OOCacheNode}I^A}'
     broken = true;
     description =
       "Free and open source game inspired by Elite";
