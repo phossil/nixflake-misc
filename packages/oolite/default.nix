@@ -1,4 +1,5 @@
 { lib
+, clangStdenv
 , fetchFromGitHub
 , gnustep
 , SDL
@@ -13,7 +14,7 @@
 , pkg-config
 }:
 
-gnustep.gsmakeDerivation rec {
+clangStdenv.mkDerivation rec {
   pname = "oolite";
   version = "1.90";
 
@@ -27,8 +28,15 @@ gnustep.gsmakeDerivation rec {
 
   strictDeps = true;
 
+  nativeBuildInputs = [
+    gnustep.make
+    gnustep.wrapGNUstepAppsHook
+  ];
+
   buildInputs = [
     gnustep.base
+    gnustep.gui
+    gnustep.back
     SDL
     SDL_image
     SDL_mixer
@@ -39,7 +47,7 @@ gnustep.gsmakeDerivation rec {
     libogg
     libvorbis
   ];
-  
+
   # upstream recommends this but I do not feel comfortable with it
   # https://github.com/OoliteProject/oolite/blob/d8dabec4bb2c830f502276e5c5823aef855ef66a/README.md?plain=1#L144
   env.NIX_CFLAGS_COMPILE = toString [
