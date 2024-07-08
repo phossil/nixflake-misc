@@ -14,7 +14,7 @@
       # these are yet to be added to nixpkgs
       packages.${system} = with pkgs; {
         qvwm = callPackage ./packages/qvwm { };
-        wapanel = callPackage ./packages/wapanel { };
+        #wapanel = callPackage ./packages/wapanel { }; # TODO: remove later
         unifraktur-cook = callPackage ./packages/unifraktur-cook { };
         unifraktur-maguntia = callPackage ./packages/unifraktur-maguntia { };
         brass_mono = callPackage ./packages/brass-mono { };
