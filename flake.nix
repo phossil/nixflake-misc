@@ -20,6 +20,7 @@
         brass_mono = callPackage ./packages/brass-mono { };
         #oolite = callPackage ./packages/oolite { };
         #lem = callPackage ./packages/lem { };
+        cairo-dock-core = callPackage ./packages/cairo-dock-core { };
       };
 
       # make the flake look pretty :)
