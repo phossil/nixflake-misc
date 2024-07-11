@@ -35,6 +35,7 @@ stdenv.mkDerivation rec {
 
   strictDeps = true;
 
+  # fixes some custom install path variables
   patches = [ ./cmake-install.patch ];
 
   nativeBuildInputs = [
