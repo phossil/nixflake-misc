@@ -3,6 +3,7 @@
 , fetchFromGitHub
 , cmake
 , pkg-config
+, ninja
 , gettext
 , glib
 , cairo
@@ -14,17 +15,22 @@
 , pcre2
 , xorg
 , gtk3
+, wayland
+, gtk-layer-shell
+, nlohmann_json
+, extra-cmake-modules
+, systemdLibs
 }:
 
 stdenv.mkDerivation rec {
   pname = "cairo-dock-core";
-  version = "3.5.0";
+  version = "3.5.0-unstable-2024-05-24";
 
   src = fetchFromGitHub {
     owner = "Cairo-Dock";
     repo = pname;
-    rev = version;
-    hash = "sha256-NqRxFlcQtdJ+o5io6LXwTRZCxFI2wWDOoQn7s9or49s=";
+    rev = "13fb1516bc269debe7d7dfc1c67aae7acde27423";
+    hash = "sha256-OIy1jF3+s0PWEn3zQbAO1DIToijCqcO/HkvYNhcOsOs=";
   };
 
   strictDeps = true;
@@ -34,7 +40,9 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [
     cmake
     pkg-config
+    ninja
     gettext
+    extra-cmake-modules
   ];
 
   buildInputs = [
@@ -47,6 +55,10 @@ stdenv.mkDerivation rec {
     curl
     pcre2
     gtk3
+    wayland
+    gtk-layer-shell
+    nlohmann_json
+    systemdLibs
   ] ++ (with xorg; [
     libXdmcp
     libXtst
@@ -56,13 +68,7 @@ stdenv.mkDerivation rec {
     libXinerama
   ]);
 
-  cmakeFlags = [
-    "-Denable-egl-support=True" # acceleration in wayland
-    #"-Denable-desktop-manager=True" # fails with below error
-    # CMake Error at data/desktop-manager/gnome-session-3.36/cmake_install.cmake:54 (file):
-    #  file cannot create directory: /var/empty/share/xsessions.  Maybe need
-    #  administrative privileges.
-  ];
+  env.ECM_DIR = "${extra-cmake-modules}/share/ECM";
 
   meta = with lib; {
     description = "Flexible desktop interface";
