@@ -24,6 +24,7 @@
         cairo-dock-plug-ins = callPackage ./packages/cairo-dock-plug-ins {
           inherit cairo-dock-core;
         };
+        concord = callPackage ./packages/concord { };
       };
 
       # make the flake look pretty :)
