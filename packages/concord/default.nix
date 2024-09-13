@@ -17,9 +17,7 @@ stdenv.mkDerivation rec {
     fetchSubmodules = true;
   };
 
-  buildInputs = [
-    curl
-  ];
+  buildInputs = [ curl ];
 
   postPatch = ''
     # fix prefix path

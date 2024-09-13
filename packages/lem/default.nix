@@ -1,21 +1,20 @@
-{ lib
-, stdenv
-, fetchFromGitHub
-, sbcl
-, sbclPackages
-, libffi
-, SDL2
-, SDL2_ttf
-, SDL2_image
-, ncurses
-, openssl
-, writeText
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  sbcl,
+  sbclPackages,
+  libffi,
+  SDL2,
+  SDL2_ttf,
+  SDL2_image,
+  ncurses,
+  openssl,
+  writeText,
 }:
 
 let
-  sbcl' = sbcl.withPackages (ps: with ps; [
-    sbclPackages.qlot
-  ]);
+  sbcl' = sbcl.withPackages (ps: with ps; [ sbclPackages.qlot ]);
 in
 stdenv.mkDerivation rec {
   pname = "lem";
@@ -31,9 +30,7 @@ stdenv.mkDerivation rec {
 
   strictDeps = true;
 
-  nativeBuildInputs = [
-    sbcl'
-  ];
+  nativeBuildInputs = [ sbcl' ];
 
   buildInputs = [
     libffi
@@ -46,12 +43,11 @@ stdenv.mkDerivation rec {
 
   env.LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
 
-  qlotBuild = writeText "qlot-build.lisp"
-    ''
-      (load (sb-ext:posix-getenv "ASDF"))
-      (asdf:load-system 'qlot)
-      (qlot:install #P"/build/source")
-    '';
+  qlotBuild = writeText "qlot-build.lisp" ''
+    (load (sb-ext:posix-getenv "ASDF"))
+    (asdf:load-system 'qlot)
+    (qlot:install #P"/build/source")
+  '';
 
   buildPhase = ''
     ${sbcl'}/bin/sbcl --noinform --no-sysinit --no-userinit --load ${qlotBuild}

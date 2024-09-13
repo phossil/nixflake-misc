@@ -1,17 +1,18 @@
-{ lib
-, clangStdenv
-, fetchFromGitHub
-, gnustep
-, SDL
-, SDL_image
-, SDL_mixer
-, nspr
-, openal
-, espeak-classic
-, libGLU
-, libogg
-, libvorbis
-, pkg-config
+{
+  lib,
+  clangStdenv,
+  fetchFromGitHub,
+  gnustep,
+  SDL,
+  SDL_image,
+  SDL_mixer,
+  nspr,
+  openal,
+  espeak-classic,
+  libGLU,
+  libogg,
+  libvorbis,
+  pkg-config,
 }:
 
 clangStdenv.mkDerivation rec {
@@ -63,8 +64,7 @@ clangStdenv.mkDerivation rec {
     # build fails at linking stage:
     # /build/source/src/Core/OOCache.m:1058:(.text+0xcff): undefined reference to `__objc_ivar_offset_OOCache.cache.^{OOCacheImpl=^{OOCacheNode}^{OOCacheNode}^{OOCacheNode}I^A}'
     broken = true;
-    description =
-      "Free and open source game inspired by Elite";
+    description = "Free and open source game inspired by Elite";
     homepage = "https://www.oolite.space/";
     #mainProgram = "";
     maintainers = with maintainers; [ phossil ];

@@ -1,16 +1,17 @@
-{ lib
-, stdenv
-, fetchFromGitHub
-, autoconf
-, automake
-, bison
-, flex
-, xorg
-, alsa-lib
-, audiofile
-, imlib2
-, gettext
-, writeText
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  autoconf,
+  automake,
+  bison,
+  flex,
+  xorg,
+  alsa-lib,
+  audiofile,
+  imlib2,
+  gettext,
+  writeText,
 }:
 
 stdenv.mkDerivation rec {
@@ -32,18 +33,21 @@ stdenv.mkDerivation rec {
     gettext
   ];
 
-  buildInputs = with xorg; [
-    libXpm
-    libSM
-    libXScrnSaver
-    libICE
-    libXext
-    libXrender
-  ] ++ [
-    alsa-lib
-    audiofile
-    imlib2
-  ];
+  buildInputs =
+    with xorg;
+    [
+      libXpm
+      libSM
+      libXScrnSaver
+      libICE
+      libXext
+      libXrender
+    ]
+    ++ [
+      alsa-lib
+      audiofile
+      imlib2
+    ];
 
   configureFlags = [
     "--enable-rmtcmd"
@@ -53,15 +57,14 @@ stdenv.mkDerivation rec {
     "--without-esd"
   ];
 
-  xsessionFile = writeText "qvwm.desktop"
-    ''
-      [Desktop Entry]
-      Type=Xsession
-      Name=QvWM
-      TryExec=@out@/bin/qvwm
-      Exec=@out@/bin/qvwm
-      Comment=Windows 9x lookalike window manager
-    '';
+  xsessionFile = writeText "qvwm.desktop" ''
+    [Desktop Entry]
+    Type=Xsession
+    Name=QvWM
+    TryExec=@out@/bin/qvwm
+    Exec=@out@/bin/qvwm
+    Comment=Windows 9x lookalike window manager
+  '';
 
   # move xsession file to appropriate path
   postInstall = ''

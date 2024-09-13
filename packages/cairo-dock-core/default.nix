@@ -1,25 +1,26 @@
-{ lib
-, stdenv
-, fetchFromGitHub
-, cmake
-, pkg-config
-, ninja
-, gettext
-, glib
-, cairo
-, librsvg
-, dbus-glib
-, libxml2
-, libGLU
-, curl
-, pcre2
-, xorg
-, gtk3
-, wayland
-, gtk-layer-shell
-, nlohmann_json
-, extra-cmake-modules
-, systemdLibs
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  cmake,
+  pkg-config,
+  ninja,
+  gettext,
+  glib,
+  cairo,
+  librsvg,
+  dbus-glib,
+  libxml2,
+  libGLU,
+  curl,
+  pcre2,
+  xorg,
+  gtk3,
+  wayland,
+  gtk-layer-shell,
+  nlohmann_json,
+  extra-cmake-modules,
+  systemdLibs,
 }:
 
 stdenv.mkDerivation rec {
@@ -46,28 +47,30 @@ stdenv.mkDerivation rec {
     extra-cmake-modules
   ];
 
-  buildInputs = [
-    glib
-    cairo
-    librsvg
-    dbus-glib
-    libxml2
-    libGLU
-    curl
-    pcre2
-    gtk3
-    wayland
-    gtk-layer-shell
-    nlohmann_json
-    systemdLibs
-  ] ++ (with xorg; [
-    libXdmcp
-    libXtst
-    libXcomposite
-    libXrandr
-    libXrender
-    libXinerama
-  ]);
+  buildInputs =
+    [
+      glib
+      cairo
+      librsvg
+      dbus-glib
+      libxml2
+      libGLU
+      curl
+      pcre2
+      gtk3
+      wayland
+      gtk-layer-shell
+      nlohmann_json
+      systemdLibs
+    ]
+    ++ (with xorg; [
+      libXdmcp
+      libXtst
+      libXcomposite
+      libXrandr
+      libXrender
+      libXinerama
+    ]);
 
   env.ECM_DIR = "${extra-cmake-modules}/share/ECM";
 

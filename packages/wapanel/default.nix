@@ -1,16 +1,17 @@
-{ lib
-, stdenv
-, fetchFromGitHub
-, meson
-, ninja
-, pkg-config
-, gtk3
-, gtk-layer-shell
-, libpulseaudio
-, wayland-protocols
-, wayland
-, wayland-scanner
-, xdg-utils
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  meson,
+  ninja,
+  pkg-config,
+  gtk3,
+  gtk-layer-shell,
+  libpulseaudio,
+  wayland-protocols,
+  wayland,
+  wayland-scanner,
+  xdg-utils,
 }:
 
 stdenv.mkDerivation rec {
@@ -54,8 +55,7 @@ stdenv.mkDerivation rec {
   '';
 
   meta = with lib; {
-    description =
-      "Simple panel/status bar/task bar for your custom stacking Wayland-based desktop";
+    description = "Simple panel/status bar/task bar for your custom stacking Wayland-based desktop";
     homepage = "https://firstbober.github.io/wapanel";
     mainProgram = "wapanel";
     maintainers = with maintainers; [ phossil ];

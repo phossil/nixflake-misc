@@ -1,47 +1,48 @@
-{ lib
-, stdenv
-, fetchFromGitHub
-, cmake
-, pkg-config
-, ninja
-, gettext
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  cmake,
+  pkg-config,
+  ninja,
+  gettext,
   # core deps
-, glib
-, cairo
-, librsvg
-, dbus-glib
-, libxml2
-, libGLU
-, curl
-, pcre2
-, xorg
-, gtk3
+  glib,
+  cairo,
+  librsvg,
+  dbus-glib,
+  libxml2,
+  libGLU,
+  curl,
+  pcre2,
+  xorg,
+  gtk3,
   # plug-in deps
-, cairo-dock-core
-, pango
-, alsa-lib
-, libetpan
-, gnome-menus
-, libxklavier
-, gvfs
-, upower
-, zeitgeist
-, vte
-, libexif
-, lm_sensors
-, libdbusmenu
-, libdbusmenu-gtk2
-, libdbusmenu-gtk3
-, libindicator
-, libindicator-gtk2
-, libindicator-gtk3
-, libical
-, libpulseaudio
-, fftw
-, lerc
-, icu
-, libayatana-indicator
-, ayatana-ido
+  cairo-dock-core,
+  pango,
+  alsa-lib,
+  libetpan,
+  gnome-menus,
+  libxklavier,
+  gvfs,
+  upower,
+  zeitgeist,
+  vte,
+  libexif,
+  lm_sensors,
+  libdbusmenu,
+  libdbusmenu-gtk2,
+  libdbusmenu-gtk3,
+  libindicator,
+  libindicator-gtk2,
+  libindicator-gtk3,
+  libical,
+  libpulseaudio,
+  fftw,
+  lerc,
+  icu,
+  libayatana-indicator,
+  ayatana-ido,
 }:
 
 stdenv.mkDerivation rec {
@@ -68,54 +69,56 @@ stdenv.mkDerivation rec {
     gettext
   ];
 
-  buildInputs = [
-    # core deps
-    glib
-    cairo
-    librsvg
-    dbus-glib
-    libxml2
-    libGLU
-    curl
-    pcre2
-    gtk3
-    # plug-in deps
-    cairo-dock-core
-    pango
-    alsa-lib
-    libetpan
-    gnome-menus
-    libxklavier
-    gvfs
-    upower
-    zeitgeist
-    vte
-    libexif
-    lm_sensors
-    libdbusmenu
-    libdbusmenu-gtk2
-    libdbusmenu-gtk3
-    libindicator
-    libindicator-gtk2
-    libindicator-gtk3
-    libical
-    libpulseaudio
-    fftw
-    lerc
-    icu
-    libayatana-indicator
-    ayatana-ido
-  ] ++ (with xorg; [
-    # core deps
-    libXdmcp
-    libXtst
-    libXcomposite
-    libXrandr
-    libXrender
-    libXinerama
-    # plug-in deps
-    libXxf86vm
-  ]);
+  buildInputs =
+    [
+      # core deps
+      glib
+      cairo
+      librsvg
+      dbus-glib
+      libxml2
+      libGLU
+      curl
+      pcre2
+      gtk3
+      # plug-in deps
+      cairo-dock-core
+      pango
+      alsa-lib
+      libetpan
+      gnome-menus
+      libxklavier
+      gvfs
+      upower
+      zeitgeist
+      vte
+      libexif
+      lm_sensors
+      libdbusmenu
+      libdbusmenu-gtk2
+      libdbusmenu-gtk3
+      libindicator
+      libindicator-gtk2
+      libindicator-gtk3
+      libical
+      libpulseaudio
+      fftw
+      lerc
+      icu
+      libayatana-indicator
+      ayatana-ido
+    ]
+    ++ (with xorg; [
+      # core deps
+      libXdmcp
+      libXtst
+      libXcomposite
+      libXrandr
+      libXrender
+      libXinerama
+      # plug-in deps
+      libXxf86vm
+    ]);
 
   cmakeFlags = [
     # unstable features

@@ -1,10 +1,11 @@
 {
   description = "flake for testing miscellaneous derivations";
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs }:
+  outputs =
+    { self, nixpkgs }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -21,13 +22,11 @@
         #oolite = callPackage ./packages/oolite { };
         #lem = callPackage ./packages/lem { };
         cairo-dock-core = callPackage ./packages/cairo-dock-core { };
-        cairo-dock-plug-ins = callPackage ./packages/cairo-dock-plug-ins {
-          inherit cairo-dock-core;
-        };
+        cairo-dock-plug-ins = callPackage ./packages/cairo-dock-plug-ins { inherit cairo-dock-core; };
         concord = callPackage ./packages/concord { };
       };
 
       # make the flake look pretty :)
-      formatter.${system} = pkgs.nixpkgs-fmt;
+      formatter.${system} = pkgs.nixfmt-rfc-style;
     };
 }
