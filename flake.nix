@@ -1,5 +1,5 @@
 {
-  description = "flake for testing miscellaneous derivations";
+  description = "flake with random packages i might submit into nixpkgs";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
