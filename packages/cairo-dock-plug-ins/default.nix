@@ -47,13 +47,13 @@
 
 stdenv.mkDerivation rec {
   pname = "cairo-dock-plug-ins";
-  version = "3.5.0-unstable-2024-05-01";
+  version = "3.5.1";
 
   src = fetchFromGitHub {
     owner = "Cairo-Dock";
     repo = pname;
-    rev = "9901f7d9d59657363580b75766f7d5e7f23b6388";
-    hash = "sha256-jguQIhqQwXfwb9v5A82B6dual4EJd3x11UEbHdf1VQE=";
+    rev = version;
+    hash = "sha256-bYVsfXI7YLeXmyItKzi+jNtWhABtrkRmR4MuQmCfNuA=";
   };
 
   strictDeps = true;

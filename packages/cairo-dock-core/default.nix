@@ -25,13 +25,13 @@
 
 stdenv.mkDerivation rec {
   pname = "cairo-dock-core";
-  version = "3.5.0-unstable-2024-05-24";
+  version = "3.5.1";
 
   src = fetchFromGitHub {
     owner = "Cairo-Dock";
     repo = pname;
-    rev = "13fb1516bc269debe7d7dfc1c67aae7acde27423";
-    hash = "sha256-OIy1jF3+s0PWEn3zQbAO1DIToijCqcO/HkvYNhcOsOs=";
+    rev = version;
+    hash = "sha256-x7s7xmNF9nfJLq/u8ageaadBNHlxeekQ1JzfLugYJQ8=";
   };
 
   strictDeps = true;
