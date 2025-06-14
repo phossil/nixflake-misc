@@ -19,11 +19,12 @@ stdenv.mkDerivation rec {
 
   buildInputs = [ curl ];
 
-  postPatch = ''
-    # fix prefix path
-    substituteInPlace Makefile \
-      --replace "/usr/local" "${builtins.placeholder "out"}"
-  '';
+  makeFlags = [
+    # prefix path defaults to /usr/local
+    "PREFIX=${builtins.placeholder "out"}"
+    # defaults to static library instead of shared
+    "shared"
+  ];
 
   meta = with lib; {
     description = "Discord API library written in C99";
