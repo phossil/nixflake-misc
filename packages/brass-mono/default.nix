@@ -6,17 +6,18 @@
 
 stdenvNoCC.mkDerivation rec {
   pname = "brass_mono";
-  version = "1.000";
+  version = "1.101";
 
   src = fetchzip {
     url = "https://github.com/fonsecapeter/${pname}/releases/download/v${version}/BrassMono.zip";
-    hash = "sha256-+UZasm5Ws4eHiNqYdXr9n61SriPDJlXETN3fNpLrJ0I=";
+    hash = "sha256-XamUFHuVRnCUadLdERG9AipiRGWe88+CdxY6+FFyerE=";
+    stripRoot = false;
   };
 
   installPhase = ''
     runHook preInstall
 
-    install -Dm644 -t $out/share/fonts/truetype/ BrassMono/*.ttf
+    install -Dm644 -t $out/share/fonts/truetype/ *.ttf
 
     runHook postInstall
   '';
