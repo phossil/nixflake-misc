@@ -25,13 +25,13 @@
 
 stdenv.mkDerivation rec {
   pname = "cairo-dock-core";
-  version = "3.5.1";
+  version = "3.5.2";
 
   src = fetchFromGitHub {
     owner = "Cairo-Dock";
     repo = pname;
     rev = version;
-    hash = "sha256-x7s7xmNF9nfJLq/u8ageaadBNHlxeekQ1JzfLugYJQ8=";
+    hash = "sha256-WFuFreDkTxPTms8lwzWo9Cc10FEoLHsisVAxySgnNEo=";
   };
 
   strictDeps = true;
@@ -75,6 +75,8 @@ stdenv.mkDerivation rec {
   env.ECM_DIR = "${extra-cmake-modules}/share/ECM";
 
   meta = with lib; {
+    # builds successfully but cannot find resource files
+    broken = true;
     description = "Flexible desktop interface";
     homepage = "https://glx-dock.org/";
     mainProgram = "cairo-dock";

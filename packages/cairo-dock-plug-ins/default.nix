@@ -47,13 +47,13 @@
 
 stdenv.mkDerivation rec {
   pname = "cairo-dock-plug-ins";
-  version = "3.5.1";
+  version = "3.5.2";
 
   src = fetchFromGitHub {
     owner = "Cairo-Dock";
     repo = pname;
     rev = version;
-    hash = "sha256-bYVsfXI7YLeXmyItKzi+jNtWhABtrkRmR4MuQmCfNuA=";
+    hash = "sha256-ElzyjWdL0doH1TVWr8e5XY63jJhIlLNELiL+KxovVzA=";
   };
 
   strictDeps = true;
@@ -132,6 +132,8 @@ stdenv.mkDerivation rec {
   ];
 
   meta = with lib; {
+    # builds successfully but depends on cairo-dock-core, which is broken
+    broken = true;
     description = "Flexible desktop interface - plug-ins";
     homepage = "https://glx-dock.org/";
     maintainers = with maintainers; [ phossil ];
