@@ -47,20 +47,20 @@
 
 stdenv.mkDerivation rec {
   pname = "cairo-dock-plug-ins";
-  version = "3.5.2";
+  version = "3.6.1";
 
   src = fetchFromGitHub {
     owner = "Cairo-Dock";
     repo = pname;
     rev = version;
-    hash = "sha256-ElzyjWdL0doH1TVWr8e5XY63jJhIlLNELiL+KxovVzA=";
+    hash = "sha256-zGJl66RsXFJmgeV7khY/4ao4gLK0MDJN3gCkbvvwRWA=";
   };
 
   strictDeps = true;
 
   # depends on cairo-dock-core's cmake install path weirdness for
   # more of its own
-  patches = [ ./cmake-install.patch ];
+  #patches = [ ./cmake-install.patch ];
 
   nativeBuildInputs = [
     cmake
@@ -120,6 +120,12 @@ stdenv.mkDerivation rec {
       libXxf86vm
     ]);
 
+  # required for finding gio/gdesktopappinfo.h
+  env.NIX_CFLAGS_COMPILE = "-I${lib.getDev glib}/include/gio-unix-2.0";
+
+  # one of the most cursed things i've ever needed to do
+  env.PKG_CONFIG_PATH = "${lib.getBin cairo-dock-core}/${lib.getBin cairo-dock-core}/lib/pkgconfig/";
+
   cmakeFlags = [
     # unstable features
     "-Denable-global-menu=True"
@@ -132,7 +138,7 @@ stdenv.mkDerivation rec {
   ];
 
   meta = with lib; {
-    # builds successfully but depends on cairo-dock-core, which is broken
+    # wants to install into cairo-dock-core's path
     broken = true;
     description = "Flexible desktop interface - plug-ins";
     homepage = "https://glx-dock.org/";

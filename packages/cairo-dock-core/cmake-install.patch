@@ -1,8 +1,8 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 43e0b22e..c38cdc91 100644
+index 5cf7d7db..c9a843e4 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -67,20 +67,14 @@ set (GETTEXT_PACKAGE ${PACKAGE})
+@@ -70,21 +70,15 @@ set (GETTEXT_PACKAGE ${PACKAGE})
  
  set (prefix ${CMAKE_INSTALL_PREFIX})  # /usr/local
  set (exec_prefix ${prefix})
@@ -11,6 +11,7 @@ index 43e0b22e..c38cdc91 100644
  set (pkgdatadir "${datadir}/${CMAKE_PROJECT_NAME}")  # (...)/cairo-dock
 -set (mandir "${prefix}/${CMAKE_INSTALL_MANDIR}")  # (...)/man
 +set (mandir "${CMAKE_INSTALL_MANDIR}")  # (...)/man
+ set (unitdir "${prefix}/lib/systemd/user") # for systemd units (if enabled)
  
 -if( CMAKE_SIZEOF_VOID_P EQUAL 8 AND (force-lib64 OR "${FORCE_LIB64}" STREQUAL "yes"))  # 64bits and force install in lib64
 -	set (libdir "${prefix}/lib64")
@@ -26,14 +27,14 @@ index 43e0b22e..c38cdc91 100644
 +set (includedir "${CMAKE_INSTALL_INCLUDEDIR}")  # (...)/include
 +set (bindir "${CMAKE_INSTALL_BINDIR}")  # (...)/bin
  
- set (pluginsdir "${libdir}/cairo-dock")
- set (pluginsdatadir "${pkgdatadir}/plug-ins")
-@@ -201,7 +195,7 @@ endif()
+ if (NOT DEFINED plugins-prefix)
+ 	set (plugins-prefix "${prefix}")
+@@ -292,7 +286,7 @@ endif()
  set (CAIRO_DOCK_SHARE_DATA_DIR ${pkgdatadir})
  set (CAIRO_DOCK_SHARE_THEMES_DIR ${pkgdatadir}/themes)
  #set (CAIRO_DOCK_MODULES_DIR ${libdir}/cairo-dock)
 -set (CAIRO_DOCK_LOCALE_DIR "${prefix}/${CMAKE_INSTALL_LOCALEDIR}")
 +set (CAIRO_DOCK_LOCALE_DIR "${CMAKE_INSTALL_LOCALEDIR}")
+ set (CAIRO_DOCK_PLUGINS_LOCALE_DIR "${plugins-locale}")
  set (CAIRO_DOCK_THEMES_DIR "themes")  # folder name where themes are saved locally, relatively to the root folder of Cairo-Dock.
  set (CAIRO_DOCK_DISTANT_THEMES_DIR "themes3.4")  # folder name where themes are on the server, relatively to the root folder of the server files.
- set (CAIRO_DOCK_GETTEXT_PACKAGE ${GETTEXT_PACKAGE})
