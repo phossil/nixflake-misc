@@ -5,14 +5,14 @@
   curl,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "concord";
   version = "2.4.0";
 
   src = fetchFromGitHub {
     owner = "Cogmasters";
-    repo = pname;
-    rev = "v${version}";
+    repo = finalAttrs.pname;
+    tag = "v${finalAttrs.version}";
     hash = "sha256-OXR7+F77DAGzT8Sy/s2ayuIvgLLYzc7nD5xmDtiBH/0=";
     fetchSubmodules = true;
   };
@@ -33,4 +33,4 @@ stdenv.mkDerivation rec {
     platforms = with platforms; intersectLists unix littleEndian;
     license = licenses.mit;
   };
-}
+})

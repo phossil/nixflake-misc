@@ -30,14 +30,14 @@
   wayland-scanner,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "cairo-dock-core";
   version = "3.6.1";
 
   src = fetchFromGitHub {
     owner = "Cairo-Dock";
-    repo = pname;
-    rev = version;
+    repo = finalAttrs.pname;
+    tag = finalAttrs.version;
     hash = "sha256-tki0XmcwPNngcM5O1woCfFw01lcvD5FuV+pn7X/iWs0=";
   };
 
@@ -86,9 +86,9 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     description = "Flexible desktop interface";
     homepage = "https://glx-dock.org/";
-    mainProgram = "cairo-dock";
     maintainers = with maintainers; [ phossil ];
     platforms = platforms.linux;
     license = licenses.gpl3Only;
+    mainProgram = "cairo-dock";
   };
-}
+})

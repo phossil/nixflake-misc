@@ -51,14 +51,14 @@
   libxxf86vm,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "cairo-dock-plug-ins";
   version = "3.6.1";
 
   src = fetchFromGitHub {
     owner = "Cairo-Dock";
-    repo = pname;
-    rev = version;
+    repo = finalAttrs.pname;
+    tag = finalAttrs.version;
     hash = "sha256-zGJl66RsXFJmgeV7khY/4ao4gLK0MDJN3gCkbvvwRWA=";
   };
 
@@ -147,4 +147,4 @@ stdenv.mkDerivation rec {
     platforms = platforms.linux;
     license = licenses.gpl3Only;
   };
-}
+})

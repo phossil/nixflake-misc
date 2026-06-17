@@ -14,14 +14,14 @@
   xdg-utils,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "wapanel";
   version = "1.1.0";
 
   src = fetchFromGitHub {
     owner = "Firstbober";
-    repo = pname;
-    rev = version;
+    repo = finalAttrs.pname;
+    tag = finalAttrs.version;
     sha256 = "sqVH/XXFIEdB3b19eHj0gqN/hjEltxKisT/UAdMmmXA=";
     fetchSubmodules = true;
   };
@@ -57,9 +57,9 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     description = "Simple panel/status bar/task bar for your custom stacking Wayland-based desktop";
     homepage = "https://firstbober.github.io/wapanel";
-    mainProgram = "wapanel";
     maintainers = with maintainers; [ phossil ];
     platforms = platforms.linux;
     license = licenses.mit;
+    mainProgram = "wapanel";
   };
-}
+})

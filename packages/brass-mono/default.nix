@@ -4,12 +4,12 @@
   fetchzip,
 }:
 
-stdenvNoCC.mkDerivation rec {
+stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "brass_mono";
   version = "1.101";
 
   src = fetchzip {
-    url = "https://github.com/fonsecapeter/${pname}/releases/download/v${version}/BrassMono.zip";
+    url = "https://github.com/fonsecapeter/${finalAttrs.pname}/releases/download/v${finalAttrs.version}/BrassMono.zip";
     hash = "sha256-XamUFHuVRnCUadLdERG9AipiRGWe88+CdxY6+FFyerE=";
     stripRoot = false;
   };
@@ -28,4 +28,4 @@ stdenvNoCC.mkDerivation rec {
     license = licenses.ofl;
     platforms = platforms.all;
   };
-}
+})

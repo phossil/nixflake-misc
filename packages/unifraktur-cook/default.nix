@@ -4,12 +4,12 @@
   fetchzip,
 }:
 
-stdenvNoCC.mkDerivation rec {
+stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "UnifrakturCook";
   version = "2013-08-25";
 
   src = fetchzip {
-    url = "mirror://sourceforge/unifraktur/fonts/${pname}.${version}.zip";
+    url = "mirror://sourceforge/unifraktur/fonts/${finalAttrs.pname}.${finalAttrs.version}.zip";
     hash = "sha256-Zz++XLshPntpqhFhy3rwErlAutNWkorBcrjUbNpvHxs=";
   };
 
@@ -28,4 +28,4 @@ stdenvNoCC.mkDerivation rec {
     license = licenses.ofl;
     platforms = platforms.all;
   };
-}
+})

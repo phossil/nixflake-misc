@@ -4,12 +4,12 @@
   fetchzip,
 }:
 
-stdenvNoCC.mkDerivation rec {
+stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "UnifrakturMaguntia";
   version = "2017-03-19";
 
   src = fetchzip {
-    url = "mirror://sourceforge/unifraktur/fonts/${pname}.${version}.zip";
+    url = "mirror://sourceforge/unifraktur/fonts/${finalAttrs.pname}.${finalAttrs.version}.zip";
     hash = "sha256-GhutYxslqu0WN/4Pk44eMY86z+bfdUvGep5YHtTLWIw=";
   };
 
@@ -28,4 +28,4 @@ stdenvNoCC.mkDerivation rec {
     license = licenses.ofl;
     platforms = platforms.all;
   };
-}
+})
