@@ -6,7 +6,12 @@
   automake,
   bison,
   flex,
-  xorg,
+  libxpm,
+  libsm,
+  libxscrnsaver,
+  libice,
+  libxext,
+  libxrender,
   alsa-lib,
   audiofile,
   imlib2,
@@ -33,21 +38,17 @@ stdenv.mkDerivation rec {
     gettext
   ];
 
-  buildInputs =
-    with xorg;
-    [
-      libXpm
-      libSM
-      libXScrnSaver
-      libICE
-      libXext
-      libXrender
-    ]
-    ++ [
-      alsa-lib
-      audiofile
-      imlib2
-    ];
+  buildInputs = [
+    libxpm
+    libsm
+    libxscrnsaver
+    libice
+    libxext
+    libxrender
+    alsa-lib
+    audiofile
+    imlib2
+  ];
 
   configureFlags = [
     "--enable-rmtcmd"

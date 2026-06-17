@@ -14,12 +14,17 @@
   libGLU,
   curl,
   pcre2,
-  xorg,
+  libxdmcp,
+  libxtst,
+  libxcomposite,
+  libxrandr,
+  libxrender,
+  libxinerama,
   gtk3,
   wayland,
   gtk-layer-shell,
   json_c,
-  extra-cmake-modules,
+  kdePackages,
   systemdLibs,
   libsysprof-capture,
   wayland-scanner,
@@ -46,35 +51,32 @@ stdenv.mkDerivation rec {
     pkg-config
     ninja
     gettext
-    extra-cmake-modules
+    kdePackages.extra-cmake-modules
     wayland-scanner
   ];
 
-  buildInputs =
-    [
-      glib
-      cairo
-      librsvg
-      dbus-glib
-      libxml2
-      libGLU
-      curl
-      pcre2
-      gtk3
-      wayland
-      gtk-layer-shell
-      json_c
-      systemdLibs
-      libsysprof-capture
-    ]
-    ++ (with xorg; [
-      libXdmcp
-      libXtst
-      libXcomposite
-      libXrandr
-      libXrender
-      libXinerama
-    ]);
+  buildInputs = [
+    glib
+    cairo
+    librsvg
+    dbus-glib
+    libxml2
+    libGLU
+    curl
+    pcre2
+    gtk3
+    wayland
+    gtk-layer-shell
+    json_c
+    systemdLibs
+    libsysprof-capture
+    libxdmcp
+    libxtst
+    libxcomposite
+    libxrandr
+    libxrender
+    libxinerama
+  ];
 
   # required for finding gio/gdesktopappinfo.h
   env.NIX_CFLAGS_COMPILE = "-I${lib.getDev glib}/include/gio-unix-2.0";

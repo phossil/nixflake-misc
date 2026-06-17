@@ -1,7 +1,7 @@
 {
   description = "flake with random packages i might submit into nixpkgs";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
 
   outputs =
@@ -24,6 +24,6 @@
       };
 
       # make the flake look pretty :)
-      formatter.${system} = pkgs.nixfmt-rfc-style;
+      formatter.${system} = pkgs.nixfmt-tree;
     };
 }

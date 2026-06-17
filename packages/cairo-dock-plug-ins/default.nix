@@ -15,7 +15,12 @@
   libGLU,
   curl,
   pcre2,
-  xorg,
+  libxdmcp,
+  libxtst,
+  libxcomposite,
+  libxrandr,
+  libxrender,
+  libxinerama,
   gtk3,
   # plug-in deps
   cairo-dock-core,
@@ -43,6 +48,7 @@
   icu,
   libayatana-indicator,
   ayatana-ido,
+  libxxf86vm,
 }:
 
 stdenv.mkDerivation rec {
@@ -69,56 +75,51 @@ stdenv.mkDerivation rec {
     gettext
   ];
 
-  buildInputs =
-    [
-      # core deps
-      glib
-      cairo
-      librsvg
-      dbus-glib
-      libxml2
-      libGLU
-      curl
-      pcre2
-      gtk3
-      # plug-in deps
-      cairo-dock-core
-      pango
-      alsa-lib
-      libetpan
-      gnome-menus
-      libxklavier
-      gvfs
-      upower
-      zeitgeist
-      vte
-      libexif
-      lm_sensors
-      libdbusmenu
-      libdbusmenu-gtk2
-      libdbusmenu-gtk3
-      libindicator
-      libindicator-gtk2
-      libindicator-gtk3
-      libical
-      libpulseaudio
-      fftw
-      lerc
-      icu
-      libayatana-indicator
-      ayatana-ido
-    ]
-    ++ (with xorg; [
-      # core deps
-      libXdmcp
-      libXtst
-      libXcomposite
-      libXrandr
-      libXrender
-      libXinerama
-      # plug-in deps
-      libXxf86vm
-    ]);
+  buildInputs = [
+    # core deps
+    glib
+    cairo
+    librsvg
+    dbus-glib
+    libxml2
+    libGLU
+    curl
+    pcre2
+    gtk3
+    libxdmcp
+    libxtst
+    libxcomposite
+    libxrandr
+    libxrender
+    libxinerama
+    # plug-in deps
+    cairo-dock-core
+    pango
+    alsa-lib
+    libetpan
+    gnome-menus
+    libxklavier
+    gvfs
+    upower
+    zeitgeist
+    vte
+    libexif
+    lm_sensors
+    libdbusmenu
+    libdbusmenu-gtk2
+    libdbusmenu-gtk3
+    libindicator
+    libindicator-gtk2
+    libindicator-gtk3
+    libical
+    libpulseaudio
+    fftw
+    lerc
+    icu
+    libayatana-indicator
+    ayatana-ido
+    libxxf86vm
+  ];
 
   # required for finding gio/gdesktopappinfo.h
   env.NIX_CFLAGS_COMPILE = "-I${lib.getDev glib}/include/gio-unix-2.0";
