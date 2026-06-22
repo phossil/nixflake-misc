@@ -1,19 +1,19 @@
 {
   lib,
-  stdenv,
+  llvmPackages,
   fetchFromGitHub,
   cmake,
   ninja,
-  clang,
-  llvm,
   python3,
   lit,
+  #doxygen,
+  #graphviz,
   libffi,
   zlib,
   libxml2,
 }:
 
-stdenv.mkDerivation (finalAttrs: {
+llvmPackages.stdenv.mkDerivation (finalAttrs: {
   pname = "tpde";
   version = "0-unstable-2026-03-30";
 
@@ -25,19 +25,33 @@ stdenv.mkDerivation (finalAttrs: {
     fetchSubmodules = true;
   };
 
+  strictDeps = true;
+
+  # plugin is built but not installed in upstream
+  patches = [ ./install-plugin.patch ];
+
   nativeBuildInputs = [
     cmake
     ninja
-    clang
     python3
     lit
+    #doxygen
+    #graphviz
   ];
 
   buildInputs = [
-    llvm
+    llvmPackages.libllvm
     libffi
     zlib
     libxml2
+  ];
+
+  cmakeFlags = [
+    # llvm backend as pass plugin
+    "-DTPDE_ENABLE_LLVM_PLUGIN=ON"
+    # generate documents
+    # TODO: patch docs/CMakeLists.txt to install
+    #"-DTPDE_BUILD_DOCS=ON"
   ];
 
   hardeningDisable = [

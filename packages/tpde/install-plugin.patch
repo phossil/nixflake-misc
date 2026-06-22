@@ -1,0 +1,22 @@
+diff --git a/tpde-llvm/CMakeLists.txt b/tpde-llvm/CMakeLists.txt
+index 0b769fa..5c184fc 100644
+--- a/tpde-llvm/CMakeLists.txt
++++ b/tpde-llvm/CMakeLists.txt
+@@ -242,12 +242,12 @@ if (TPDE_ENABLE_LLVM_PLUGIN)
+     if (LLVM_VERSION_MAJOR LESS 22)
+         message(SEND_ERROR "TPDE LLVM plugin requires LLVM 22 or newer")
+     endif ()
+-    add_library(tpde-plugin MODULE tools/tpde-plugin.cpp)
++
++    list(APPEND CMAKE_MODULE_PATH ${LLVM_CMAKE_DIR})
++    include(AddLLVM)
++
++    add_llvm_pass_plugin(tpde-plugin tools/tpde-plugin.cpp)
+     target_link_libraries(tpde-plugin PRIVATE tpde_llvm_impl)
+-    set_target_properties(tpde-plugin PROPERTIES
+-        PREFIX ""
+-        SUFFIX ${LLVM_PLUGIN_EXT}
+-    )
+ 
+     list(APPEND TPDE_LLVM_TEST_DEPENDS tpde-plugin)
+ endif ()

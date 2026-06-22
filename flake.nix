@@ -21,7 +21,7 @@
         cairo-dock-core = callPackage ./packages/cairo-dock-core { };
         cairo-dock-plug-ins = callPackage ./packages/cairo-dock-plug-ins { inherit cairo-dock-core; };
         concord = callPackage ./packages/concord { };
-        tpde = callPackage ./packages/tpde { };
+        tpde = callPackage ./packages/tpde { llvmPackages = llvmPackages_22; };
       };
 
       # make the flake look pretty :)
