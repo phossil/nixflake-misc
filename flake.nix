@@ -13,13 +13,11 @@
     in
     {
       # these are yet to be added to nixpkgs
-      packages.${system} = with pkgs; rec {
+      packages.${system} = with pkgs; {
         qvwm = callPackage ./packages/qvwm { };
         unifraktur-cook = callPackage ./packages/unifraktur-cook { };
         unifraktur-maguntia = callPackage ./packages/unifraktur-maguntia { };
         brass_mono = callPackage ./packages/brass-mono { };
-        cairo-dock-core = callPackage ./packages/cairo-dock-core { };
-        cairo-dock-plug-ins = callPackage ./packages/cairo-dock-plug-ins { inherit cairo-dock-core; };
         concord = callPackage ./packages/concord { };
         tpde = callPackage ./packages/tpde { llvmPackages = llvmPackages_22; };
       };
